@@ -62,6 +62,12 @@ namespace LightBot.Map
                                                 GridMap.BASE_POSITION.z + GridMap.TILE_SIZE * y);
             return worldPosition;
         }
+
+        public Tile GetTileFromWorldPosition(Vector3 worldPosition)
+        {
+            Vector3 tilePosition = GetTilePositionFromWorldPosition(worldPosition);
+            return GetTile((int)worldPosition.x, (int)worldPosition.y);
+        }
         
         public Vector3 GetTilePositionFromWorldPosition(Vector3 worldPosition)
         {

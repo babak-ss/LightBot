@@ -16,6 +16,7 @@ namespace LightBot.Map
         private void Start()
         {
             _refreshViewEvent?.Subscribe(OnRefreshViewEventListener);
+            DrawMap();
         }
 
         private void OnRefreshViewEventListener()
