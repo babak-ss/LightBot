@@ -9,15 +9,33 @@ namespace LightBot.LevelEditor
     {
         public float theZ;
         [SerializeField] private Vector3EventSO _clickEvent;
+        [SerializeField] private Vector3EventSO _longPressEvent;
         [SerializeField] private Camera _camera;
         [SerializeField] private GridMapSO _gridMapSO;
         [SerializeField] private Vector3EventSO _tileClickedEvent;
-        private const float TILE_SIZE = 1;
+        [SerializeField] private Vector3EventSO _tileLongPressEvent;
+
         void Start()
         {
             _clickEvent?.Subscribe(OnClickEventListener);
+            _longPressEvent?.Subscribe(OnLongPressEventListener);
         }
-        
+
+        private void OnLongPressEventListener(Vector3 clickedPosition)
+        {
+            if (!_gridMapSO.HasData())
+            {
+                Debug.Log("No GridMap!");
+                return;
+            }
+            
+            Vector3 clickWorldPosition = _camera.ScreenToWorldPoint(new Vector3(clickedPosition.x, clickedPosition.y, theZ));
+            Vector3 tilePosition = _gridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
+            
+            if (_gridMapSO.CheckIsValid((int)tilePosition.x, (int)tilePosition.y))
+                _tileLongPressEvent.RaiseEvent(tilePosition);
+        }
+
         private void OnClickEventListener(Vector3 clickedPosition)
         {
             if (!_gridMapSO.HasData())
@@ -27,26 +45,10 @@ namespace LightBot.LevelEditor
             }
             
             Vector3 clickWorldPosition = _camera.ScreenToWorldPoint(new Vector3(clickedPosition.x, clickedPosition.y, theZ));
+            Vector3 tilePosition = _gridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
             
-            for (int i = 0; i < _gridMapSO.GetWidth(); i++)
-            {
-                if (GridMap.TILE_SIZE / 2 > 
-                    Math.Abs(_gridMapSO.GetWorldPositionOfTile(i, 0).x - clickWorldPosition.x))
-                {
-                    for (int j = 0; j < _gridMapSO.GetHeight(); j++)
-                    {
-                        if (GridMap.TILE_SIZE / 2 >
-                            Math.Abs(_gridMapSO.GetWorldPositionOfTile(i, j).z - clickWorldPosition.z))
-                        {
-                            var clickedTile = _gridMapSO.GetTile(i, j);
-                            Debug.Log(clickedTile.ToString());
-                            _tileClickedEvent.RaiseEvent(new Vector3(i, j, -1));
-                            return;
-                        }
-                    }
-                }
-            }
-            Debug.Log("NO TILES CLICKED!");
+            if (_gridMapSO.CheckIsValid((int)tilePosition.x, (int)tilePosition.y))
+                _tileClickedEvent.RaiseEvent(tilePosition);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace LightBot.Map
     public class GridMapController : MonoBehaviour
     {
         [SerializeField] private Vector3EventSO _tileClickedEvent;
+        [SerializeField] private Vector3EventSO _tileLongPressEvent;
         [SerializeField] private VoidEventSO _initializeMapEvent;
         [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
         [SerializeField] private GridMapSO _gridMapSO;
@@ -22,19 +23,27 @@ namespace LightBot.Map
         private void Start()
         {
             _tileClickedEvent?.Subscribe(OnTileClickedEventListener);
+            _tileLongPressEvent?.Subscribe(OnTileLongPressEventListener);
             _initializeMapEvent?.Subscribe(OnInitializeMapEventListener);
             _refreshGridMapViewEvent?.Subscribe(OnRefreshGridMapViewEventListener);
-            // if (_gridMapSO != null)
-            // {
-            //     if (!_gridMapSO.HasData())
-            //         _gridMapSO.InitializeGridMap();
-            // }
-            // else
-            // {
-            //     _gridMapSO = new GridMapSO();
-            //     _gridMapSO.InitializeGridMap();
-            // }
-            // DrawMap();
+        }
+        
+        private void OnTileClickedEventListener(Vector3 t)
+        {
+            Debug.Log($"found tile: {t}");
+            int tilePreviousStep = _gridMapSO.GetTileStep((int)t.x, (int)t.y);
+            if (tilePreviousStep > 3)
+                tilePreviousStep = -1;
+            _gridMapSO.SetTileStep((int)t.x, (int)t.y, tilePreviousStep + 1);
+            DrawMap();
+        }
+        
+        private void OnTileLongPressEventListener(Vector3 t)
+        {
+            Debug.Log($"found tile: {t}");
+            bool isLamp = _gridMapSO.IsLamp((int)t.x, (int)t.y);
+            _gridMapSO.SetTileIsLamp((int)t.x, (int)t.y, !isLamp);
+            DrawMap();
         }
 
         private void OnRefreshGridMapViewEventListener()
@@ -47,24 +56,20 @@ namespace LightBot.Map
             _gridMapSO.InitializeGridMapSO(_width, _height);
         }
 
-        private void OnTileClickedEventListener(Vector3 t)
-        {
-            Debug.Log($"found tile: {t}");
-            int tilePreviousStep = _gridMapSO.GetTileStep((int)t.x, (int)t.y);
-            if (tilePreviousStep > 3)
-                tilePreviousStep = -1;
-            _gridMapSO.SetTileStep((int)t.x, (int)t.y, tilePreviousStep + 1);
-            DrawMap();
-        }
-
         public void DrawMap()
         {
             if (_tiles == null)
                 _tiles = new GameObject[_gridMapSO.getTilesCount()];
             else
                 for (int i = 0; i < _tiles.Length; i++)
+                {
                     if (_tiles[i] != null)
+                    {
+                        _tiles[i].transform.localScale = Vector3.one;
+                        _tiles[i].GetComponentInChildren<Renderer>().material.color = Color.white;
                         _objectPool.Remove(_tiles[i]);
+                    }
+                }
             
             GameObject newTile;
             int counter = 0;
