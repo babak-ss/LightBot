@@ -8,7 +8,7 @@ namespace LightBot.Commands
     {
         [SerializeField] private int _levelNumber = 0;
 
-        public List<BaseCommand> Commands;
+        [SerializeField] public List<BaseCommand> Commands;
 
         // public List<Methodes> Methodes;
 

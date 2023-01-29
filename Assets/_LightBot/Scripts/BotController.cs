@@ -16,6 +16,34 @@ public class BotController : MonoBehaviour
         program.Commands.Add(new MoveCommand());
         program.Commands.Add(new JumpMoveCommand());
         program.Commands.Add(new LightCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new RotateLeftCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new JumpMoveCommand());
+        program.Commands.Add(new LightCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new RotateLeftCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new JumpMoveCommand());
+        program.Commands.Add(new LightCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new RotateLeftCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new JumpMoveCommand());
+        program.Commands.Add(new LightCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new RotateLeftCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new JumpMoveCommand());
+        program.Commands.Add(new LightCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new RotateLeftCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new JumpMoveCommand());
+        program.Commands.Add(new LightCommand());
+        program.Commands.Add(new MoveCommand());
+        program.Commands.Add(new JumpMoveCommand());
+        program.Commands.Add(new LightCommand());
     }
 
 #if UNITY_EDITOR

@@ -4,7 +4,7 @@ using LightBot.Map;
 using UnityEngine;
 using Utilities;
 
-public class LevelEditorController : MonoBehaviour
+public class LevelController : MonoBehaviour
 {
     [SerializeField] private VoidEventSO _runProgramEvent;
     [SerializeField] private VoidEventSO _resetBotEvent;
