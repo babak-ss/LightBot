@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2073404789607620784}
-  - component: {fileID: 2073404789607620791}
+  - component: {fileID: 2073404789101652326}
   m_Layer: 0
   m_Name: GridMap
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2073404789607620791
+--- !u!114 &2073404789101652326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2073404789607620790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28253a028b154a00ac7fbe5fff1a8d0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 813966b4ba5644cf9f2f790f61d70dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tileClickedEvent: {fileID: 11400000, guid: cdc2e299be4c748ceb603b2a9b0fe790, type: 2}
-  _initializeMapEvent: {fileID: 11400000, guid: babd981513b0d484d989759bafc6ac07, type: 2}
-  _refreshGridMapViewEvent: {fileID: 11400000, guid: 6cc9df2b4f2434f8fb459664bd2b3c54, type: 2}
+  _refreshViewEvent: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
   _gridMapSO: {fileID: 11400000, guid: e27cd78438ed14ea8893668040614516, type: 2}
   _tilePrefab: {fileID: 7119413498343074889, guid: 1617bd6f14c374acd9332e27ba75823a, type: 3}
   _objectPool: {fileID: 11400000, guid: 84de8165f28344fbab38c80b7139c7f9, type: 2}
-  _width: 5
-  _height: 5

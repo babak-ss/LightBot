@@ -538,12 +538,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2073404789607620790, guid: 42bee8ba3cbe2417c90498473466845c, type: 3}
       propertyPath: m_Name
-      value: GridMapController
+      value: GridMapViewer
       objectReference: {fileID: 0}
-    - target: {fileID: 2073404789607620791, guid: 42bee8ba3cbe2417c90498473466845c, type: 3}
-      propertyPath: _tileLongPressEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 41c78a1366605476b8bbfcff1c9aeb6e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42bee8ba3cbe2417c90498473466845c, type: 3}
 --- !u!1001 &3576223874064979863
@@ -557,14 +553,6 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
-      propertyPath: _longPressEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 58278c74cf318458f83c49d90e70ad2c, type: 2}
-    - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
-      propertyPath: _tileLongPressEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 41c78a1366605476b8bbfcff1c9aeb6e, type: 2}
     - target: {fileID: 3576223872498411259, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -611,11 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3576223872498411260, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
       propertyPath: m_Name
-      value: LevelEditorController
+      value: LevelEditor
       objectReference: {fileID: 0}
-    - target: {fileID: 8327572319422887836, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
-      propertyPath: _longPressEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 58278c74cf318458f83c49d90e70ad2c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}

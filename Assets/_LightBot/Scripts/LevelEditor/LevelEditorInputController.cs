@@ -1,5 +1,6 @@
 using LightBot.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace LightBot.LevelEditor
 {
@@ -7,8 +8,8 @@ namespace LightBot.LevelEditor
     {
         [SerializeField] private Vector3EventSO _clickEvent;
         [SerializeField] private Vector3EventSO _longPressEvent;
-        [SerializeField] private VoidEventSO _initializeMapEvent;
-        [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
+        [SerializeField] private VoidEventSO _initializeMapButtonEvent;
+        [FormerlySerializedAs("_refreshGridMapViewEvent")] [SerializeField] private VoidEventSO _refreshViewButtonEvent;
 
         private bool isLongPress = false;
         private float pressTimer = 0;
@@ -36,12 +37,12 @@ namespace LightBot.LevelEditor
 
         public void OnInitializeMapButtonClicked()
         {
-            _initializeMapEvent.Raise();
+            _initializeMapButtonEvent.Raise();
         }
 
         public void OnViewMapButtonClicked()
         {
-            _refreshGridMapViewEvent.Raise();
+            _refreshViewButtonEvent.Raise();
         }
     }
 }
