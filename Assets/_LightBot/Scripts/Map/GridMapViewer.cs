@@ -1,3 +1,4 @@
+using System;
 using LightBot.Core;
 using UnityEngine;
 using Utilities;
@@ -7,16 +8,27 @@ namespace LightBot.Map
     public class GridMapViewer : MonoBehaviour
     {
         [SerializeField] private VoidEventSO _refreshViewEvent;
-        [SerializeField] private GridMapSO _gridMapSO;
         [SerializeField] private GameObject _tilePrefab;
         [SerializeField] private ObjectPoolSO _objectPool;
+        private GridMapSO _gridMapSO;
         
         private GameObject[] _tiles;
 
-        private void Start()
+        public void LoadData(GridMapSO gridMapSO)
         {
-            _refreshViewEvent?.Subscribe(OnRefreshViewEventListener);
+            _gridMapSO = gridMapSO;
+        }
+        
+        private void OnEnable()
+        {
+            Debug.Log("##### GridMapViewer start");
+            _refreshViewEvent.Subscribe(OnRefreshViewEventListener);
             DrawMap();
+        }
+
+        private void OnDisable()
+        {
+            _refreshViewEvent.Unsubscribe(OnRefreshViewEventListener);
         }
 
         private void OnRefreshViewEventListener()

@@ -204,9 +204,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7224645053287422386}
-  - component: {fileID: 4426824825381541937}
   m_Layer: 0
-  m_Name: BotController
+  m_Name: BotPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,17 +228,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4426824825381541937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7902750886727588653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f85bddcd902cf46fc8a4bb9abd726db0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gridMapSO: {fileID: 11400000, guid: e27cd78438ed14ea8893668040614516, type: 2}
-  program: {fileID: 11400000, guid: 1f6ea1fa2e79f459fa0d615556f2fbdb, type: 2}

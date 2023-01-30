@@ -1,13 +1,12 @@
 using System.Collections.Generic;
+using LightBot.Commands;
 using UnityEngine;
 
-namespace LightBot.Commands
+namespace LightBot
 {
-    [CreateAssetMenu(menuName = "Program")]
-    public class Program : ScriptableObject
+    [CreateAssetMenu(menuName = "Level/Program")]
+    public class ProgramSO : ScriptableObject
     {
-        [SerializeField] private int _levelNumber = 0;
-
         public List<BaseCommand> Commands;
 
         // public List<Methodes> Methodes;

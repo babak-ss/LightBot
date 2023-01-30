@@ -1,6 +1,8 @@
+using System;
 using LightBot.Commands;
 using LightBot.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utilities;
 
 
@@ -8,7 +10,7 @@ namespace LightBot
 {
     public class ProgramViewer : MonoBehaviour
     {
-        [SerializeField] private Program _program;
+        private ProgramSO _programSO;
 
         [SerializeField] private VoidEventSO _refreshProgramViewEvent;
 
@@ -22,9 +24,21 @@ namespace LightBot
 
         private Vector3 _commandBasePosition = new Vector3(60, 670, 0);
 
-        void Start()
+        public void LoadData(ProgramSO programSO)
         {
+            _programSO = programSO;
+        }
+        
+        private void OnEnable()
+        {
+            Debug.Log("##### ProgramViewer start");
             _refreshProgramViewEvent.Subscribe(OnRefreshViewProgramEventListener);
+            DrawProgramView();
+        }
+
+        private void OnDisable()
+        {
+            _refreshProgramViewEvent.Unsubscribe(OnRefreshViewProgramEventListener);
         }
 
         private void OnRefreshViewProgramEventListener()
@@ -36,7 +50,7 @@ namespace LightBot
         {
             GameObject commandImage;
             int index = 0;
-            foreach (var command in _program.Commands)
+            foreach (var command in _programSO.Commands)
             {
                 if (command.GetType() == typeof(MoveCommand))
                 {

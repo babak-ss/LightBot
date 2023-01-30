@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace LightBot.Map
 {
-    [CreateAssetMenu(menuName = "Map/GridMap")]
+    [CreateAssetMenu(menuName = "Level/GridMapSO")]
     public class GridMapSO : ScriptableObject
     {
         [SerializeField] private GridMap _gridMap;
         
-        [SerializeField] private int _levelNumber = 0;
-
         public GridMapSO()
         {
             Debug.Log("GridMapSO Constructor");

@@ -601,5 +601,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelEditor
       objectReference: {fileID: 0}
+    - target: {fileID: 8327572319422887836, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
+      propertyPath: _refreshViewButtonEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 163c1737e8199411fb272ee89409f299, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}

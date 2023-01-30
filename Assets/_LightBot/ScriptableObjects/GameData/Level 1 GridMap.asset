@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cacca9ca45d14a1aa6f8f673b5cbd292, type: 3}
-  m_Name: Level0
+  m_Name: Level 1 GridMap
   m_EditorClassIdentifier: 
   _gridMap:
     Width: 5

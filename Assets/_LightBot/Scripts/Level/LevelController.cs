@@ -10,40 +10,54 @@ namespace LightBot
     public class LevelController : MonoBehaviour
     {
         [SerializeField] private ObjectPoolSO _objectPool;
-        [SerializeField] private GridMapSO _currentGridMap;
+        private LevelSO _levelSO;
+        private GridMapSO _currentGridMap;
+        private ProgramSO _currentProgram;
+        
         [SerializeField] private GameObject _botPrefab;
         private GameObject _botGameObject;
-
-        [SerializeField] private Program _program;
 
         [Header("Events")] 
         [SerializeField] private VoidEventSO _runProgramEvent;
         [SerializeField] private VoidEventSO _resetBotEvent;
         [SerializeField] private VoidEventSO _resetLevelEvent;
         [SerializeField] private VoidEventSO _refreshProgramViewEvent;
+        [SerializeField] private VoidEventSO _refreshViewEvent;
 
-
-        void Start()
+        public void LoadLevelData(LevelSO levelSO)
         {
+            _levelSO = levelSO;
+            _currentGridMap = _levelSO.GridMapSO;
+            _currentProgram = _levelSO.ProgramSO;
             
-            _program.Instantiate();
-            _program.Commands.Add(new MoveCommand());
-            _program.Commands.Add(new RotateLeftCommand());
-            _program.Commands.Add(new MoveCommand());
-            _program.Commands.Add(new JumpMoveCommand());
-            _program.Commands.Add(new LightCommand());
-            _program.Commands.Add(new MoveCommand());
-            _program.Commands.Add(new RotateLeftCommand());
-            _program.Commands.Add(new MoveCommand());
-            _program.Commands.Add(new JumpMoveCommand());
-            _program.Commands.Add(new LightCommand());
+            //TODO: load this using a "level data event"
+            GetComponentInChildren<GridMapViewer>().LoadData(_currentGridMap);
+            GetComponentInChildren<ProgramViewer>().LoadData(_currentProgram);
             
-            
+            _currentProgram.Instantiate();
+            _currentProgram.Commands.Add(new MoveCommand());
+            _currentProgram.Commands.Add(new RotateLeftCommand());
+            _currentProgram.Commands.Add(new MoveCommand());
+            _currentProgram.Commands.Add(new RotateRightCommand());
+            _currentProgram.Commands.Add(new JumpMoveCommand());
+            _currentProgram.Commands.Add(new LightCommand());
+        }
+        
+        private void OnEnable()
+        {
             _runProgramEvent.Subscribe(RunProgram);
             _resetBotEvent.Subscribe(ResetBot);
             _resetLevelEvent.Subscribe(ResetLevel);
 
-            ResetBot();
+            _refreshViewEvent.Raise();
+            ResetLevel();
+        }
+
+        private void OnDisable()
+        {
+            _runProgramEvent.Unsubscribe(RunProgram);
+            _resetBotEvent.Unsubscribe(ResetBot);
+            _resetLevelEvent.Unsubscribe(ResetLevel);
         }
 
         
@@ -92,12 +106,12 @@ namespace LightBot
             _botGameObject = _objectPool.Get(_botPrefab);
             _botGameObject.transform.position = _currentGridMap.GetWorldPositionOfTile(0, 0);
             _botGameObject.transform.localEulerAngles = Vector3.zero;
+            _botGameObject.transform.SetParent(transform);
             _botGameObject.SetActive(true);
         }
 
         private void ResetLevel()
         {
-            _program.Instantiate();
             ResetBot();
             _refreshProgramViewEvent.Raise();
         }
@@ -107,9 +121,9 @@ namespace LightBot
             StartCoroutine(RunCommands());
         }
         
-        public IEnumerator RunCommands()
+        private IEnumerator RunCommands()
         {
-            foreach (var command in _program.Commands)
+            foreach (var command in _currentProgram.Commands)
             {
                 yield return new WaitForSeconds(1);
                 

@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e6ad6ff215d42344bc20e52b5c37669, type: 3}
-  m_Name: RefreshViewButtonEvent
+  m_Script: {fileID: 11500000, guid: bdfa397bd7cb406ab5ea4954ec05180b, type: 3}
+  m_Name: Level 2
   m_EditorClassIdentifier: 
+  LevelNumber: 2
+  GridMapSO: {fileID: 11400000, guid: a8b41afa516c54f79bf02f4808663927, type: 2}
+  ProgramSO: {fileID: 11400000, guid: d4aada341ab26428ba708944c5809021, type: 2}
