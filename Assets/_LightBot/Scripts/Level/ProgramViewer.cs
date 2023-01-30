@@ -31,7 +31,6 @@ namespace LightBot
         
         private void OnEnable()
         {
-            Debug.Log("##### ProgramViewer start");
             _refreshProgramViewEvent.Subscribe(OnRefreshViewProgramEventListener);
             DrawProgramView();
         }

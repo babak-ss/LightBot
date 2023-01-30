@@ -21,7 +21,6 @@ namespace LightBot.Map
         
         private void OnEnable()
         {
-            Debug.Log("##### GridMapViewer start");
             _refreshViewEvent.Subscribe(OnRefreshViewEventListener);
             DrawMap();
         }

@@ -63,7 +63,7 @@ namespace LightBot.Map
         public Tile GetTileFromWorldPosition(Vector3 worldPosition)
         {
             Vector3 tilePosition = GetTilePositionFromWorldPosition(worldPosition);
-            return GetTile((int)worldPosition.x, (int)worldPosition.y);
+            return GetTile((int)tilePosition.x, (int)tilePosition.y);
         }
         
         public Vector3 GetTilePositionFromWorldPosition(Vector3 worldPosition)
@@ -102,7 +102,6 @@ namespace LightBot.Map
             _gridMap.tiles[CalculateTileIndex(x, y)].IsLamp = isLamp;
             Debug.Log($"##### setting tile[{x}, {y}] a lamp!");
         }
-        
         
         public bool CheckIsValid(int x, int y) => x >= 0 && y >= 0 && 
                                                   x < GetWidth() & y < GetHeight() && 

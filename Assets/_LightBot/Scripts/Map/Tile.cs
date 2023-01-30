@@ -20,7 +20,7 @@ namespace LightBot.Map
 
         public override string ToString()
         {
-            return $"Tile[x={X}, y={Y}, step={Step}]";
+            return $"Tile[x={X}, y={Y}, step={Step}, isLamp = {IsLamp}]";
         }
     }
 }

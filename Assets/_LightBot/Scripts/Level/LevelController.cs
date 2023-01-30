@@ -38,9 +38,11 @@ namespace LightBot
             _currentProgram.Commands.Add(new MoveCommand());
             _currentProgram.Commands.Add(new RotateLeftCommand());
             _currentProgram.Commands.Add(new MoveCommand());
-            _currentProgram.Commands.Add(new RotateRightCommand());
-            _currentProgram.Commands.Add(new JumpMoveCommand());
             _currentProgram.Commands.Add(new LightCommand());
+            _currentProgram.Commands.Add(new MoveCommand());
+            _currentProgram.Commands.Add(new JumpMoveCommand());
+            _currentProgram.Commands.Add(new JumpMoveCommand());
+            _currentProgram.Commands.Add(new MoveCommand());
         }
         
         private void OnEnable()
@@ -128,12 +130,10 @@ namespace LightBot
                 yield return new WaitForSeconds(1);
                 
                 if (command.Run(_botGameObject.transform, _currentGridMap))
-                    Debug.Log($"Command({command}) Yay! :D");
+                    Debug.Log($"running Command({command}) Yay! :D");
                 else
-                    Debug.Log($"Command({command}) Nay X(");
+                    Debug.LogWarning($"running Command({command}) Nay X(");
             }
-
-            yield break;
         }
     }
 }
