@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67fddadbe83e946abbdcf8e9392da281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _runProgramEvent: {fileID: 11400000, guid: 6afa9ca0dff29495387c38b23343eed2, type: 2}
-  _resetBotEvent: {fileID: 11400000, guid: 20659412e4c964639ace60f632aa7812, type: 2}
-  _resetProgramEvent: {fileID: 11400000, guid: 3e083872b417845e6bc9b48b4cd28212, type: 2}
+  _objectPool: {fileID: 11400000, guid: 84de8165f28344fbab38c80b7139c7f9, type: 2}
   _currentGridMap: {fileID: 11400000, guid: e27cd78438ed14ea8893668040614516, type: 2}
   _botPrefab: {fileID: 7902750886727588653, guid: fc5db89923d60461b9ba3ef1a96cba95, type: 3}
-  _currentCommands: {fileID: 11400000, guid: 1f6ea1fa2e79f459fa0d615556f2fbdb, type: 2}
-  _objectPool: {fileID: 11400000, guid: 84de8165f28344fbab38c80b7139c7f9, type: 2}
+  _program: {fileID: 11400000, guid: 1f6ea1fa2e79f459fa0d615556f2fbdb, type: 2}
+  _runProgramEvent: {fileID: 11400000, guid: 6afa9ca0dff29495387c38b23343eed2, type: 2}
+  _resetBotEvent: {fileID: 11400000, guid: bd7cbe36d4f3243cc82341d3dd96c3be, type: 2}
+  _resetLevelEvent: {fileID: 11400000, guid: 8c70af28be5f741ffa969713bfc00c28, type: 2}
+  _refreshProgramViewEvent: {fileID: 11400000, guid: 5097107342f594c8ea5d31bdeb7783d2, type: 2}

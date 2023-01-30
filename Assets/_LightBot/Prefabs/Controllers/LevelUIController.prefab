@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9057490676397449935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9057490676397449929}
+  - component: {fileID: 9057490676397449934}
+  m_Layer: 0
+  m_Name: LevelUIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9057490676397449929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9057490676397449935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 777.1077, y: 284.6827, z: -1.3425277}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9057490676397449934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9057490676397449935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aff9c98b5074f53a5cda1ee932de968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _runProgramEvent: {fileID: 11400000, guid: 434c9199b150d44a4a32c33b5ad166c2, type: 2}
+  _resetBotEvent: {fileID: 11400000, guid: bd7cbe36d4f3243cc82341d3dd96c3be, type: 2}
+  _resetLevelButtonEvent: {fileID: 11400000, guid: bd7cbe36d4f3243cc82341d3dd96c3be, type: 2}
+  _backLevelButtonEvent: {fileID: 11400000, guid: 061524a43ceb540058ef2f766040ae56, type: 2}
+  _jumpCommandButtonEvent: {fileID: 11400000, guid: 2240d2802f2a5486c8cbd1b430b8795d, type: 2}
+  _rotateLeftCommandButtonEvent: {fileID: 11400000, guid: e6662bb69a88d4b218addbeb10d34e28, type: 2}
+  _moveCommandButtonEvent: {fileID: 11400000, guid: 70ec28abc5b2a43cdb1dde1cef12ef01, type: 2}
+  _rotateRightCommandButtonEvent: {fileID: 11400000, guid: 5b395366657d0401abc49bdf6720a815, type: 2}
+  _lightCommandButtonEvent: {fileID: 11400000, guid: 71b211aad3eb64fd5b464389bc9ed1e1, type: 2}

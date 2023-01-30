@@ -493,7 +493,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371074635233790138}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightBot.LevelUIController, Assembly-CSharp
+        m_MethodName: LevelActionButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1371074635388618440
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +519,7 @@ GameObject:
   - component: {fileID: 1371074635388618437}
   - component: {fileID: 1371074635388618442}
   m_Layer: 5
-  m_Name: RetryButton
+  m_Name: ResetLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -615,7 +627,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371074635388618437}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightBot.LevelUIController, Assembly-CSharp
+        m_MethodName: ResetLevelButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1371074635671130868
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +761,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371074635671130865}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightBot.LevelUIController, Assembly-CSharp
+        m_MethodName: BackLevelButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1371074635822619851
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +786,7 @@ GameObject:
   - component: {fileID: 1371074635822619844}
   - component: {fileID: 1371074635822619845}
   m_Layer: 5
-  m_Name: RetryButtonText
+  m_Name: ResetLevelButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -804,7 +840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Reset Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -993,7 +1029,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 944908462167598165}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightBot.LevelUIController, Assembly-CSharp
+        m_MethodName: MoveCommandButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1484073564259503533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1241,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 492462777599772059}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightBot.LevelUIController, Assembly-CSharp
+        m_MethodName: JumpCommandButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7841741846736588384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1455,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 82348759327527754}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightBot.LevelUIController, Assembly-CSharp
+        m_MethodName: RotateLeftCommandButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8287048486437019784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,7 +1588,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2273076493920661937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightBot.LevelUIController, Assembly-CSharp
+        m_MethodName: RotateRightCommandButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8973350573058341653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,4 +1721,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2334821834168602063}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LightBot.LevelUIController, Assembly-CSharp
+        m_MethodName: LightCommandButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
