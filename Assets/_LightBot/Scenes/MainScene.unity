@@ -387,18 +387,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 514205633464332534, guid: e3628ed0d58484c27b21b9d88f65dc0e, type: 3}
-      propertyPath: _refreshGridMapViewEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
     - target: {fileID: 514205634740875938, guid: e3628ed0d58484c27b21b9d88f65dc0e, type: 3}
       propertyPath: m_Name
       value: LevelController
       objectReference: {fileID: 0}
-    - target: {fileID: 514205634740875939, guid: e3628ed0d58484c27b21b9d88f65dc0e, type: 3}
-      propertyPath: _refreshGridMapViewEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
     - target: {fileID: 514205634740875948, guid: e3628ed0d58484c27b21b9d88f65dc0e, type: 3}
       propertyPath: m_RootOrder
       value: 5

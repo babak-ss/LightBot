@@ -50,14 +50,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectPool: {fileID: 11400000, guid: 84de8165f28344fbab38c80b7139c7f9, type: 2}
   _botPrefab: {fileID: 7902750886727588653, guid: fc5db89923d60461b9ba3ef1a96cba95, type: 3}
-  _runProgramEvent: {fileID: 11400000, guid: 434c9199b150d44a4a32c33b5ad166c2, type: 2}
-  _resetBotEvent: {fileID: 11400000, guid: bd7cbe36d4f3243cc82341d3dd96c3be, type: 2}
+  _levelStateChangeEvent: {fileID: 11400000, guid: 91987e7a5b9924d8a9a408321e8e61f4, type: 2}
   _resetLevelEvent: {fileID: 11400000, guid: 8c70af28be5f741ffa969713bfc00c28, type: 2}
   _refreshProgramViewEvent: {fileID: 11400000, guid: 5097107342f594c8ea5d31bdeb7783d2, type: 2}
-  _refreshViewEvent: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
+  _refreshGridMapViewEvent: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
   _commandButtonEvent: {fileID: 11400000, guid: b3e1680ecd30341dc95a26ad631c310d, type: 2}
   _clearProgramEvent: {fileID: 11400000, guid: b8ca318e4596b4534aaf08ca5214e739, type: 2}
-  _levelStateChangeEvent: {fileID: 11400000, guid: 91987e7a5b9924d8a9a408321e8e61f4, type: 2}
 --- !u!1001 &1419278452729330140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,6 +151,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProgramViewerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1481853014356742188, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
+      propertyPath: _commandPrefab
+      value: 
+      objectReference: {fileID: 6081966437089916145, guid: 41761357318d94985aecedc26a492080, type: 3}
+    - target: {fileID: 1481853014356742188, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
+      propertyPath: _jumpCommandImage
+      value: 
+      objectReference: {fileID: 2800000, guid: 788a5ab7d366949d09084e471bbeb029, type: 3}
+    - target: {fileID: 1481853014356742188, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
+      propertyPath: _moveCommandImage
+      value: 
+      objectReference: {fileID: 2800000, guid: 8007fa3697d3746e0bfc8b1c3df86f21, type: 3}
+    - target: {fileID: 1481853014356742188, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
+      propertyPath: _lightCommandImage
+      value: 
+      objectReference: {fileID: 2800000, guid: bf97c5b311674443da574fc983ee2308, type: 3}
+    - target: {fileID: 1481853014356742188, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
+      propertyPath: _rotateLeftCommandImage
+      value: 
+      objectReference: {fileID: 2800000, guid: 5b49f019fd496432197c5c6fb005fde6, type: 3}
+    - target: {fileID: 1481853014356742188, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
+      propertyPath: _rotateRightCommandImage
+      value: 
+      objectReference: {fileID: 2800000, guid: ba33d8c9fe461410c9a60d56eb3cb39b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
 --- !u!224 &514205633233250812 stripped
@@ -324,6 +346,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 514205634740875948}
     m_Modifications:
+    - target: {fileID: 2073404789101652326, guid: 42bee8ba3cbe2417c90498473466845c, type: 3}
+      propertyPath: _refreshGridMapViewEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
     - target: {fileID: 2073404789607620784, guid: 42bee8ba3cbe2417c90498473466845c, type: 3}
       propertyPath: m_RootOrder
       value: 1

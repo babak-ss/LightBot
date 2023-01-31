@@ -1,9 +1,8 @@
 using System;
+using System.Collections.Generic;
 using LightBot.Commands;
 using LightBot.Core;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utilities;
 
@@ -17,14 +16,17 @@ namespace LightBot
         [SerializeField] private VoidEventSO _refreshProgramViewEvent;
 
         [SerializeField] private ObjectPoolSO _objectPool;
-        [SerializeField] private GameObject _moveCommandPrefab;
-        [SerializeField] private GameObject _rotateLeftCommandPrefab;
-        [SerializeField] private GameObject _rotateRightCommandPrefab;
-        [SerializeField] private GameObject _jumpCommandCommandPrefab;
-        [SerializeField] private GameObject _lightCommandPrefab;
-        [SerializeField] private GameObject _methodeCommandPrefab;
+        [SerializeField] private GameObject _commandPrefab;
+        [SerializeField] private Texture _moveCommandImage;
+        [SerializeField] private Texture _rotateLeftCommandImage;
+        [SerializeField] private Texture _rotateRightCommandImage;
+        [SerializeField] private Texture _jumpCommandImage;
+        [SerializeField] private Texture _lightCommandImage;
 
-        private Vector3 _commandBasePosition = new Vector3(60, 670, 0);
+        // private Vector3 _commandBasePosition = new Vector3(60, 670, 0);
+        private Vector3 _commandBasePosition = new Vector3(0, 0, 0);
+
+        private List<GameObject> commandImagesList;
 
         public void LoadData(ProgramSO programSO)
         {
@@ -34,6 +36,7 @@ namespace LightBot
         private void OnEnable()
         {
             _refreshProgramViewEvent.Subscribe(OnRefreshViewProgramEventListener);
+            commandImagesList = new List<GameObject>();
             DrawProgramView();
         }
 
@@ -49,45 +52,47 @@ namespace LightBot
 
         private void DrawProgramView()
         {
-            GameObject commandImage;
+            for (int i = 0; i < commandImagesList.Count; i++)
+                _objectPool.Remove(commandImagesList[i]);
+            commandImagesList = new List<GameObject>();
+            GameObject commandGameObject;
             int index = 0;
             foreach (var command in _programSO.Commands)
             {
+                commandGameObject = _objectPool.Get(_commandPrefab);
                 if (command.GetType() == typeof(MoveCommand))
                 {
-                    commandImage = _objectPool.Get(_moveCommandPrefab);
+                    commandGameObject.GetComponent<RawImage>().texture = _moveCommandImage;
                 }
                 else if (command.GetType() == typeof(RotateLeftCommand))
                 {
-                    commandImage = _objectPool.Get(_rotateLeftCommandPrefab);
+                    commandGameObject.GetComponent<RawImage>().texture = _rotateLeftCommandImage;
                 }
                 else if (command.GetType() == typeof(RotateRightCommand))
                 {
-                    commandImage = _objectPool.Get(_rotateRightCommandPrefab);
+                    commandGameObject.GetComponent<RawImage>().texture = _rotateRightCommandImage;
                 }
                 else if (command.GetType() == typeof(JumpMoveCommand))
                 {
-                    commandImage = _objectPool.Get(_jumpCommandCommandPrefab);
+                    commandGameObject.GetComponent<RawImage>().texture = _jumpCommandImage;
                 }
                 else if (command.GetType() == typeof(LightCommand))
                 {
-                    commandImage = _objectPool.Get(_lightCommandPrefab);
+                    commandGameObject.GetComponent<RawImage>().texture = _lightCommandImage;
                 }
                 else
                 {
-                    commandImage = _objectPool.Get(_methodeCommandPrefab);
+                    // commandGameObject.GetComponent<Image>().sprite = _moveCommandImage;
                 }
+                commandGameObject.transform.SetParent(transform.GetChild(0));
 
-                commandImage.transform.localPosition = _commandBasePosition + Vector3.down * ((index / 6) * 100)
-                                                                            + Vector3.right * ((index % 6) * 100);
+                commandGameObject.transform.position = new Vector3(60, Screen.height - 160, 0) + 
+                                                      Vector3.down * ((index / 6) * 100) + 
+                                                      Vector3.right * ((index % 6) * 100);
 
-                // commandImage.GetComponent<Button>().onClick.AddListener(
-                //     () =>
-                //     {
-                //         _programSO.Commands.Remove(index);
-                //     });
-                commandImage.transform.SetParent(transform.GetChild(0));
-                commandImage.SetActive(true);
+                commandGameObject.GetComponent<CommandPrefabController>().SetSelfCommandAndProgram(command, _programSO);
+                commandImagesList.Add(commandGameObject);
+                commandGameObject.SetActive(true);
 
                 index++;
             }
