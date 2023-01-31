@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e6ad6ff215d42344bc20e52b5c37669, type: 3}
-  m_Name: MoveCommandButtonEvent
+  m_Script: {fileID: 11500000, guid: 6d57861939224e10ba53bc78dbcc71fe, type: 3}
+  m_Name: LevelStateManager
   m_EditorClassIdentifier: 
+  _isRunning: 0
+  _levelStateChangeEvent: {fileID: 11400000, guid: 91987e7a5b9924d8a9a408321e8e61f4, type: 2}

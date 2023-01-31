@@ -49,7 +49,7 @@ namespace LightBot.LevelEditor
             Vector3 tilePosition = _gridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
             
             if (_gridMapSO.CheckIsValid((int)tilePosition.x, (int)tilePosition.y))
-                _tileLongPressEvent.RaiseEvent(tilePosition);
+                _tileLongPressEvent.Raise(tilePosition);
         }
 
         private void OnClickEventListener(Vector3 clickedPosition)
@@ -64,7 +64,7 @@ namespace LightBot.LevelEditor
             Vector3 tilePosition = _gridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
             
             if (_gridMapSO.CheckIsValid((int)tilePosition.x, (int)tilePosition.y))
-                _tileClickedEvent.RaiseEvent(tilePosition);
+                _tileClickedEvent.Raise(tilePosition);
         }
         
         private void OnTileClickedEventListener(Vector3 t)

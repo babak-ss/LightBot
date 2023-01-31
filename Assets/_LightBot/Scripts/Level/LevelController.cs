@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using LightBot.Commands;
 using LightBot.Core;
 using LightBot.Map;
@@ -13,16 +14,18 @@ namespace LightBot
         private LevelSO _levelSO;
         private GridMapSO _currentGridMap;
         private ProgramSO _currentProgram;
+        private bool _isProgramRunning = false;
         
         [SerializeField] private GameObject _botPrefab;
         private GameObject _botGameObject;
 
         [Header("Events")] 
-        [SerializeField] private VoidEventSO _runProgramEvent;
-        [SerializeField] private VoidEventSO _resetBotEvent;
+        [SerializeField] private BoolEventSO _levelStateChangeEvent;
         [SerializeField] private VoidEventSO _resetLevelEvent;
         [SerializeField] private VoidEventSO _refreshProgramViewEvent;
-        [SerializeField] private VoidEventSO _refreshViewEvent;
+        [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
+        [SerializeField] private CommandEventSO _commandButtonEvent;
+        [SerializeField] private VoidEventSO _clearProgramEvent;
 
         public void LoadLevelData(LevelSO levelSO)
         {
@@ -47,19 +50,30 @@ namespace LightBot
         
         private void OnEnable()
         {
-            _runProgramEvent.Subscribe(RunProgram);
-            _resetBotEvent.Subscribe(ResetBot);
-            _resetLevelEvent.Subscribe(ResetLevel);
+            _isProgramRunning = false;
+            _levelStateChangeEvent.Subscribe(OnLevelStateChangeEventListener);
+            _resetLevelEvent.Subscribe(OnResetLevelEventListener);
+            _commandButtonEvent.Subscribe(OnCommandButtonEventListener);
+            _clearProgramEvent.Subscribe(OnClearProgramEventListener);
 
-            _refreshViewEvent.Raise();
-            ResetLevel();
+            _refreshGridMapViewEvent.Raise();
+            ResetBot();
         }
-
+        
         private void OnDisable()
         {
-            _runProgramEvent.Unsubscribe(RunProgram);
-            _resetBotEvent.Unsubscribe(ResetBot);
-            _resetLevelEvent.Unsubscribe(ResetLevel);
+            _levelStateChangeEvent.Unsubscribe(OnLevelStateChangeEventListener);
+            _resetLevelEvent.Unsubscribe(OnResetLevelEventListener);
+            _commandButtonEvent.Unsubscribe(OnCommandButtonEventListener);
+            _clearProgramEvent.Unsubscribe(OnClearProgramEventListener);
+        }
+
+        private void OnLevelStateChangeEventListener(bool isRunning)
+        {
+            _isProgramRunning = isRunning;
+            ResetBot();
+            if (_isProgramRunning)
+                RunProgram();
         }
 
         
@@ -100,6 +114,11 @@ namespace LightBot
             }
         }
 #endif
+
+        private void RunProgram()
+        {
+            StartCoroutine(RunCommands());
+        }
         
         private void ResetBot()
         {
@@ -112,28 +131,43 @@ namespace LightBot
             _botGameObject.SetActive(true);
         }
 
-        private void ResetLevel()
+        private void OnResetLevelEventListener()
         {
-            ResetBot();
+            _clearProgramEvent.Raise();
+        }
+
+        private void OnCommandButtonEventListener(BaseCommand command)
+        {
+            _currentProgram.Commands.Add(command);
             _refreshProgramViewEvent.Raise();
         }
 
-        private void RunProgram()
+        private void OnClearProgramEventListener()
         {
-            StartCoroutine(RunCommands());
+            _currentProgram.Commands = new List<BaseCommand>();
+            _refreshProgramViewEvent.Raise();
         }
         
         private IEnumerator RunCommands()
         {
             foreach (var command in _currentProgram.Commands)
             {
-                yield return new WaitForSeconds(1);
+                float commandDelayTimer = 0;
+                yield return new WaitUntil(() =>
+                {
+                    commandDelayTimer += Time.deltaTime;
+                    return commandDelayTimer > 1 || _isProgramRunning == false;
+                });
+                if (_isProgramRunning == false)
+                    yield break;
                 
                 if (command.Run(_botGameObject.transform, _currentGridMap))
                     Debug.Log($"running Command({command}) Yay! :D");
                 else
                     Debug.LogWarning($"running Command({command}) Nay X(");
             }
+            
+            _levelStateChangeEvent.Raise(false);
         }
     }
 }

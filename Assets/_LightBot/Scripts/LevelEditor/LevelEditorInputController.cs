@@ -26,9 +26,9 @@ namespace LightBot.LevelEditor
             if (Input.GetMouseButtonUp(0))
             {
                 if (pressTimer > LONG_PRESS_TIME)
-                    _longPressEvent.RaiseEvent(Input.mousePosition);
+                    _longPressEvent.Raise(Input.mousePosition);
                 else
-                    _clickEvent.RaiseEvent(Input.mousePosition);
+                    _clickEvent.Raise(Input.mousePosition);
                 
                 isLongPress = false;
                 pressTimer = 0;

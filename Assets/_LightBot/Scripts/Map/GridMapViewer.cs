@@ -7,7 +7,7 @@ namespace LightBot.Map
 {
     public class GridMapViewer : MonoBehaviour
     {
-        [SerializeField] private VoidEventSO _refreshViewEvent;
+        [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
         [SerializeField] private GameObject _tilePrefab;
         [SerializeField] private ObjectPoolSO _objectPool;
         private GridMapSO _gridMapSO;
@@ -21,16 +21,16 @@ namespace LightBot.Map
         
         private void OnEnable()
         {
-            _refreshViewEvent.Subscribe(OnRefreshViewEventListener);
+            _refreshGridMapViewEvent.Subscribe(OnRefreshGridMapViewEventListener);
             DrawMap();
         }
 
         private void OnDisable()
         {
-            _refreshViewEvent.Unsubscribe(OnRefreshViewEventListener);
+            _refreshGridMapViewEvent.Unsubscribe(OnRefreshGridMapViewEventListener);
         }
 
-        private void OnRefreshViewEventListener()
+        private void OnRefreshGridMapViewEventListener()
         {
             DrawMap();
         }

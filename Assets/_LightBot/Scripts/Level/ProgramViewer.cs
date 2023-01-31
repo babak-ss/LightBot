@@ -2,7 +2,9 @@ using System;
 using LightBot.Commands;
 using LightBot.Core;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Utilities;
 
 
@@ -78,7 +80,12 @@ namespace LightBot
 
                 commandImage.transform.localPosition = _commandBasePosition + Vector3.down * ((index / 6) * 100)
                                                                             + Vector3.right * ((index % 6) * 100);
-                ;
+
+                // commandImage.GetComponent<Button>().onClick.AddListener(
+                //     () =>
+                //     {
+                //         _programSO.Commands.Remove(index);
+                //     });
                 commandImage.transform.SetParent(transform.GetChild(0));
                 commandImage.SetActive(true);
 

@@ -1,24 +1,46 @@
+using System;
+using LightBot.Commands;
 using LightBot.Core;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LightBot
 {
     public class LevelUIController : MonoBehaviour
     {
-        [SerializeField] private VoidEventSO _runProgramEvent;
-        [SerializeField] private VoidEventSO _resetBotEvent;
+        [SerializeField] private Button _actionButton;
+        
+        [Header("Events")]
         [SerializeField] private VoidEventSO _resetLevelButtonEvent;
         [SerializeField] private VoidEventSO _backLevelButtonEvent;
-        
-        [SerializeField] private VoidEventSO _jumpCommandButtonEvent;
-        [SerializeField] private VoidEventSO _rotateLeftCommandButtonEvent;
-        [SerializeField] private VoidEventSO _moveCommandButtonEvent;
-        [SerializeField] private VoidEventSO _rotateRightCommandButtonEvent;
-        [SerializeField] private VoidEventSO _lightCommandButtonEvent;
-        
+        [SerializeField] private CommandEventSO _commandButtonEvent;
+        [SerializeField] private BoolEventSO _levelStateChangeEvent;
+
+        private bool _isProgramRunning = false;
+
+        private void OnEnable()
+        {
+            _isProgramRunning = false;
+            _levelStateChangeEvent.Subscribe(OnLevelStateChangeEventListener);
+        }
+
+        private void OnDisable()
+        {
+            _levelStateChangeEvent.Unsubscribe(OnLevelStateChangeEventListener);
+        }
+
+        private void OnLevelStateChangeEventListener(bool isRunning)
+        {
+            _isProgramRunning = isRunning;
+            ChangeLevelUI(_isProgramRunning);
+        }
+
         public void ResetLevelButton()
         {
             _resetLevelButtonEvent.Raise();
+            _levelStateChangeEvent.Raise(false);
+            ChangeLevelUI(true);
         }
 
         public void BackLevelButton()
@@ -28,34 +50,59 @@ namespace LightBot
         
         public void LevelActionButton()
         {
-            _runProgramEvent.Raise();
-            // _resetBotEvent.Raise();
+            _isProgramRunning = !_isProgramRunning;
+            _levelStateChangeEvent.Raise(_isProgramRunning);
+            ChangeLevelUI(_isProgramRunning);
         }
         
 
         public void JumpCommandButton()
         {
-            _jumpCommandButtonEvent.Raise();
+            if (_isProgramRunning)
+                return;
+            _commandButtonEvent.Raise(new JumpMoveCommand());
         }
 
         public void RotateLeftCommandButton()
         {
-            _rotateLeftCommandButtonEvent.Raise();
+            if (_isProgramRunning)
+                return;
+            _commandButtonEvent.Raise(new RotateLeftCommand());
         }
 
         public void MoveCommandButton()
         {
-            _moveCommandButtonEvent.Raise();
+            if (_isProgramRunning)
+                return;
+            _commandButtonEvent.Raise(new MoveCommand());
         }
 
         public void RotateRightCommandButton()
         {
-            _rotateRightCommandButtonEvent.Raise();
+            if (_isProgramRunning)
+                return;
+            _commandButtonEvent.Raise(new RotateRightCommand());
         }
 
         public void LightCommandButton()
         {
-            _lightCommandButtonEvent.Raise();
+            if (_isProgramRunning)
+                return;
+            _commandButtonEvent.Raise(new LightCommand());
+        }
+
+        private void ChangeLevelUI(bool isRunning)
+        {
+            if (isRunning)
+            {
+                _actionButton.image.color = Color.red;
+                _actionButton.GetComponentInChildren<TextMeshProUGUI>().text = "Stop";
+            }
+            else
+            {
+                _actionButton.image.color = Color.green;
+                _actionButton.GetComponentInChildren<TextMeshProUGUI>().text = "Run";
+            }
         }
     }
 }

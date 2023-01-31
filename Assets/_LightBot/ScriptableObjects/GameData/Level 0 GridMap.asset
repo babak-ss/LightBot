@@ -43,7 +43,7 @@ MonoBehaviour:
     - X: 1
       Y: 1
       Step: 0
-      IsLamp: 0
+      IsLamp: 1
     - X: 1
       Y: 2
       Step: 1
@@ -116,4 +116,3 @@ MonoBehaviour:
       Y: 4
       Step: 0
       IsLamp: 0
-  _levelNumber: 0

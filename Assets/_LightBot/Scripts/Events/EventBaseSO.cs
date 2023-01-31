@@ -8,6 +8,6 @@ namespace LightBot.Core
     }
     public abstract class EventBaseSO<T> :ScriptableObject
     {
-        public abstract void RaiseEvent(T t);
+        public abstract void Raise(T t);
     }
 }

@@ -17,7 +17,7 @@ namespace LightBot.Core
             OnEventRaised -= listener;
         }
         
-        public override void RaiseEvent(T t)
+        public override void Raise(T t)
         {
             // Debug.Log($"Event '{this.name}' Raised! parameter: '{t}'");
             OnEventRaised?.Invoke(t);
