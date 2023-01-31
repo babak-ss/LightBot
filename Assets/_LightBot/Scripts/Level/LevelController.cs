@@ -152,6 +152,11 @@ namespace LightBot
         {
             foreach (var command in _currentProgram.Commands)
             {
+                if (command.Run(_botGameObject.transform, _currentGridMap))
+                    Debug.Log($"running Command({command}) Yay! :D");
+                else
+                    Debug.LogWarning($"running Command({command}) Nay X(");
+                
                 float commandDelayTimer = 0;
                 yield return new WaitUntil(() =>
                 {
@@ -160,11 +165,6 @@ namespace LightBot
                 });
                 if (_isProgramRunning == false)
                     yield break;
-                
-                if (command.Run(_botGameObject.transform, _currentGridMap))
-                    Debug.Log($"running Command({command}) Yay! :D");
-                else
-                    Debug.LogWarning($"running Command({command}) Nay X(");
             }
             
             _levelStateChangeEvent.Raise(false);
