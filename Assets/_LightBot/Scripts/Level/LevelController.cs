@@ -21,7 +21,7 @@ namespace LightBot
 
         [Header("Events")] 
         [SerializeField] private BoolEventSO _levelStateChangeEvent;
-        [SerializeField] private VoidEventSO _resetLevelEvent;
+        [SerializeField] private VoidEventSO _resetLevelButtonEvent;
         [SerializeField] private VoidEventSO _refreshProgramViewEvent;
         [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
         [SerializeField] private CommandEventSO _commandButtonEvent;
@@ -36,23 +36,13 @@ namespace LightBot
             //TODO: load this using a "level data event"
             GetComponentInChildren<GridMapViewer>().LoadData(_currentGridMap);
             GetComponentInChildren<ProgramViewer>().LoadData(_currentProgram);
-            
-            _currentProgram.Instantiate();
-            _currentProgram.Commands.Add(new MoveCommand());
-            _currentProgram.Commands.Add(new RotateLeftCommand());
-            _currentProgram.Commands.Add(new MoveCommand());
-            _currentProgram.Commands.Add(new LightCommand());
-            _currentProgram.Commands.Add(new MoveCommand());
-            _currentProgram.Commands.Add(new JumpMoveCommand());
-            _currentProgram.Commands.Add(new JumpMoveCommand());
-            _currentProgram.Commands.Add(new MoveCommand());
         }
         
         private void OnEnable()
         {
             _isProgramRunning = false;
             _levelStateChangeEvent.Subscribe(OnLevelStateChangeEventListener);
-            _resetLevelEvent.Subscribe(OnResetLevelEventListener);
+            _resetLevelButtonEvent.Subscribe(OnResetLevelButtonEventListener);
             _commandButtonEvent.Subscribe(OnCommandButtonEventListener);
             _clearProgramEvent.Subscribe(OnClearProgramEventListener);
 
@@ -63,7 +53,7 @@ namespace LightBot
         private void OnDisable()
         {
             _levelStateChangeEvent.Unsubscribe(OnLevelStateChangeEventListener);
-            _resetLevelEvent.Unsubscribe(OnResetLevelEventListener);
+            _resetLevelButtonEvent.Unsubscribe(OnResetLevelButtonEventListener);
             _commandButtonEvent.Unsubscribe(OnCommandButtonEventListener);
             _clearProgramEvent.Unsubscribe(OnClearProgramEventListener);
         }
@@ -131,9 +121,10 @@ namespace LightBot
             _botGameObject.SetActive(true);
         }
 
-        private void OnResetLevelEventListener()
+        private void OnResetLevelButtonEventListener()
         {
             _clearProgramEvent.Raise();
+            _levelStateChangeEvent.Raise(false);
         }
 
         private void OnCommandButtonEventListener(BaseCommand command)

@@ -22,10 +22,6 @@ namespace LightBot
         [SerializeField] private Texture _rotateRightCommandImage;
         [SerializeField] private Texture _jumpCommandImage;
         [SerializeField] private Texture _lightCommandImage;
-
-        // private Vector3 _commandBasePosition = new Vector3(60, 670, 0);
-        private Vector3 _commandBasePosition = new Vector3(0, 0, 0);
-
         private List<GameObject> commandImagesList;
 
         public void LoadData(ProgramSO programSO)

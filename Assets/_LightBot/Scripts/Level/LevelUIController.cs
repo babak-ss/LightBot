@@ -39,8 +39,6 @@ namespace LightBot
         public void ResetLevelButton()
         {
             _resetLevelButtonEvent.Raise();
-            _levelStateChangeEvent.Raise(false);
-            ChangeLevelUI(true);
         }
 
         public void BackLevelButton()
@@ -55,7 +53,6 @@ namespace LightBot
             ChangeLevelUI(_isProgramRunning);
         }
         
-
         public void JumpCommandButton()
         {
             if (_isProgramRunning)
