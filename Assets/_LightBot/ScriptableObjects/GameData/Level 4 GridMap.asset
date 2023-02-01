@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cacca9ca45d14a1aa6f8f673b5cbd292, type: 3}
-  m_Name: Level 2 GridMap
+  m_Name: Level 4 GridMap
   m_EditorClassIdentifier: 
   _gridMap:
     Width: 3
-    Height: 3
+    Height: 5
     tiles:
     - X: 0
       Y: 0
@@ -22,23 +22,39 @@ MonoBehaviour:
       IsLamp: 0
     - X: 0
       Y: 1
-      Step: 2
+      Step: 1
       IsLamp: 0
     - X: 0
       Y: 2
       Step: 0
-      IsLamp: 1
-    - X: 1
-      Y: 0
-      Step: 0
       IsLamp: 0
-    - X: 1
-      Y: 1
+    - X: 0
+      Y: 3
+      Step: 1
+      IsLamp: 0
+    - X: 0
+      Y: 4
       Step: 2
       IsLamp: 0
     - X: 1
+      Y: 0
+      Step: 0
+      IsLamp: 0
+    - X: 1
+      Y: 1
+      Step: 1
+      IsLamp: 0
+    - X: 1
       Y: 2
       Step: 0
+      IsLamp: 0
+    - X: 1
+      Y: 3
+      Step: 1
+      IsLamp: 0
+    - X: 1
+      Y: 4
+      Step: 2
       IsLamp: 0
     - X: 2
       Y: 0
@@ -46,9 +62,17 @@ MonoBehaviour:
       IsLamp: 0
     - X: 2
       Y: 1
-      Step: 0
+      Step: 1
       IsLamp: 0
     - X: 2
       Y: 2
       Step: 0
       IsLamp: 0
+    - X: 2
+      Y: 3
+      Step: 1
+      IsLamp: 0
+    - X: 2
+      Y: 4
+      Step: 2
+      IsLamp: 1
