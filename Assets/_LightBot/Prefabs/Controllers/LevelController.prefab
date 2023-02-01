@@ -56,6 +56,7 @@ MonoBehaviour:
   _refreshGridMapViewEvent: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
   _commandButtonEvent: {fileID: 11400000, guid: b3e1680ecd30341dc95a26ad631c310d, type: 2}
   _clearProgramEvent: {fileID: 11400000, guid: b8ca318e4596b4534aaf08ca5214e739, type: 2}
+  _levelDataEvent: {fileID: 11400000, guid: 9283b9bd9612641ee9f2c55033533b0f, type: 2}
 --- !u!1001 &1419278452729330140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,6 +156,10 @@ PrefabInstance:
       propertyPath: _commandPrefab
       value: 
       objectReference: {fileID: 6081966437089916145, guid: 41761357318d94985aecedc26a492080, type: 3}
+    - target: {fileID: 1481853014356742188, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
+      propertyPath: _levelDataEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 9283b9bd9612641ee9f2c55033533b0f, type: 2}
     - target: {fileID: 1481853014356742188, guid: 54ea5c6bbeb6f46028d1e1009271a1a5, type: 3}
       propertyPath: _jumpCommandImage
       value: 

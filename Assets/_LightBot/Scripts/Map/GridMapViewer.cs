@@ -7,21 +7,18 @@ namespace LightBot.Map
     public class GridMapViewer : MonoBehaviour
     {
         [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
+        [SerializeField] private LevelDataEventSO _levelDataEvent;
         [SerializeField] private GameObject _tilePrefab;
         [SerializeField] private ObjectPoolSO _objectPool;
         [SerializeField] private GridMapSO _gridMapSO;
         
         private GameObject[] _tiles;
-
-        public void LoadData(GridMapSO gridMapSO)
-        {
-            _gridMapSO = gridMapSO;
-        }
         
         private void OnEnable()
         {
+            Debug.Log("GridMapViewer OnEnable");
             _refreshGridMapViewEvent.Subscribe(OnRefreshGridMapViewEventListener);
-            DrawMap();
+            _levelDataEvent.Subscribe(OnLevelDataEventListener);
         }
 
         private void OnDisable()
@@ -34,11 +31,17 @@ namespace LightBot.Map
             DrawMap();
         }
 
+        private void OnLevelDataEventListener(LevelSO level)
+        {
+            Debug.Log("GridMapViewer OnLevelDataEvent");
+            LoadData(level.GridMapSO);
+            DrawMap();
+        }
+
         private void DrawMap()
         {
-            if (_tiles == null)
-                _tiles = new GameObject[_gridMapSO.getTilesCount()];
-            else
+            if (_tiles != null)
+            {
                 for (int i = 0; i < _tiles.Length; i++)
                 {
                     if (_tiles[i] != null)
@@ -48,7 +51,9 @@ namespace LightBot.Map
                         _objectPool.Remove(_tiles[i]);
                     }
                 }
-
+            }
+            _tiles = new GameObject[_gridMapSO.getTilesCount()];
+            
             int counter = 0;
             for (int i = 0; i < _gridMapSO.GetWidth(); i++)
             {
@@ -71,6 +76,11 @@ namespace LightBot.Map
                     newTile.SetActive(true);
                 }
             }
+        }
+
+        private void LoadData(GridMapSO gridMapSO)
+        {
+            _gridMapSO = gridMapSO;
         }
     }
 }

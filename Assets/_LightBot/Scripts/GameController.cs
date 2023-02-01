@@ -1,4 +1,6 @@
+using System;
 using LightBot.Core;
+using UnityEditor;
 using UnityEngine;
 
 namespace LightBot
@@ -30,9 +32,14 @@ namespace LightBot
 
         public void StartLevel(int levelIndex)
         {
-            _levelController.LoadLevelData(_gameDataSO.Levels[levelIndex]);
             _gameMenuCanvas.SetActive(false);
             _levelController.gameObject.SetActive(true);
+            _levelController.LoadLevelData(_gameDataSO.Levels[levelIndex]);
+        }
+
+        private void OnApplicationQuit()
+        {
+            EditorUtility.SetDirty(_gameDataSO);
         }
     }
 }

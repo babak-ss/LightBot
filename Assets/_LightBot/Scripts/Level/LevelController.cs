@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using LightBot.Commands;
 using LightBot.Core;
 using LightBot.Map;
+using UnityEditor;
 using UnityEngine;
 using Utilities;
 
@@ -26,6 +27,7 @@ namespace LightBot
         [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
         [SerializeField] private CommandEventSO _commandButtonEvent;
         [SerializeField] private VoidEventSO _clearProgramEvent;
+        [SerializeField] private LevelDataEventSO _levelDataEvent;
 
         public void LoadLevelData(LevelSO levelSO)
         {
@@ -33,9 +35,8 @@ namespace LightBot
             _currentGridMap = _levelSO.GridMapSO;
             _currentProgram = _levelSO.ProgramSO;
             
-            //TODO: load this using a "level data event"
-            GetComponentInChildren<GridMapViewer>().LoadData(_currentGridMap);
-            GetComponentInChildren<ProgramViewer>().LoadData(_currentProgram);
+            _levelDataEvent.Raise(_levelSO);
+            ResetBot();
         }
         
         private void OnEnable()
@@ -45,9 +46,6 @@ namespace LightBot
             _resetLevelButtonEvent.Subscribe(OnResetLevelButtonEventListener);
             _commandButtonEvent.Subscribe(OnCommandButtonEventListener);
             _clearProgramEvent.Subscribe(OnClearProgramEventListener);
-
-            _refreshGridMapViewEvent.Raise();
-            ResetBot();
         }
         
         private void OnDisable()
@@ -56,6 +54,8 @@ namespace LightBot
             _resetLevelButtonEvent.Unsubscribe(OnResetLevelButtonEventListener);
             _commandButtonEvent.Unsubscribe(OnCommandButtonEventListener);
             _clearProgramEvent.Unsubscribe(OnClearProgramEventListener);
+            
+            EditorUtility.SetDirty(_currentProgram);
         }
 
         private void OnLevelStateChangeEventListener(bool isRunning)

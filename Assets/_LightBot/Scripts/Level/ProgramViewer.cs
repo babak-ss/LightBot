@@ -14,6 +14,7 @@ namespace LightBot
         private ProgramSO _programSO;
 
         [SerializeField] private VoidEventSO _refreshProgramViewEvent;
+        [SerializeField] private LevelDataEventSO _levelDataEvent;
 
         [SerializeField] private ObjectPoolSO _objectPool;
         [SerializeField] private GameObject _commandPrefab;
@@ -23,22 +24,18 @@ namespace LightBot
         [SerializeField] private Texture _jumpCommandImage;
         [SerializeField] private Texture _lightCommandImage;
         private List<GameObject> commandImagesList;
-
-        public void LoadData(ProgramSO programSO)
-        {
-            _programSO = programSO;
-        }
         
         private void OnEnable()
         {
+            Debug.Log("ProgramViewer OnEnable");
             _refreshProgramViewEvent.Subscribe(OnRefreshViewProgramEventListener);
-            commandImagesList = new List<GameObject>();
-            DrawProgramView();
+            _levelDataEvent.Subscribe(OnLevelDataEventListener);
         }
 
         private void OnDisable()
         {
             _refreshProgramViewEvent.Unsubscribe(OnRefreshViewProgramEventListener);
+            _levelDataEvent.Unsubscribe(OnLevelDataEventListener);
         }
 
         private void OnRefreshViewProgramEventListener()
@@ -46,15 +43,25 @@ namespace LightBot
             DrawProgramView();
         }
 
+        private void OnLevelDataEventListener(LevelSO level)
+        {
+            Debug.Log("Program Viewer OnLevelDataEvent");
+            LoadData(level.ProgramSO);
+            DrawProgramView();
+        }
+
         private void DrawProgramView()
         {
-            for (int i = 0; i < commandImagesList.Count; i++)
-                _objectPool.Remove(commandImagesList[i]);
+            if (commandImagesList != null)
+                for (int i = 0; i < commandImagesList.Count; i++)
+                    _objectPool.Remove(commandImagesList[i]);
             commandImagesList = new List<GameObject>();
-            GameObject commandGameObject;
+            
             int index = 0;
             if (_programSO.Commands == null)
                 _programSO.Commands = new List<BaseCommand>();
+            
+            GameObject commandGameObject;
             foreach (var command in _programSO.Commands)
             {
                 commandGameObject = _objectPool.Get(_commandPrefab);
@@ -96,6 +103,12 @@ namespace LightBot
             }
         }
 
+        private void LoadData(ProgramSO programSO)
+        {
+            _programSO = programSO;
+        }
+        
+#if UNITY_EDITOR
         void Update()
         {
             if (Input.GetKeyUp(KeyCode.V))
@@ -103,5 +116,6 @@ namespace LightBot
                 DrawProgramView();
             }
         }
+#endif
     }
 }
