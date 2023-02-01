@@ -34,6 +34,9 @@ namespace LightBot
             _levelSO = levelSO;
             _currentGridMap = _levelSO.GridMapSO;
             _currentProgram = _levelSO.ProgramSO;
+
+            if (_currentProgram.Commands == null)
+                _currentProgram.Commands = new List<BaseCommand>();
             
             _levelDataEvent.Raise(_levelSO);
             ResetBot();

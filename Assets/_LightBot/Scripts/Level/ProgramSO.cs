@@ -8,12 +8,5 @@ namespace LightBot
     public class ProgramSO : ScriptableObject
     {
         public List<BaseCommand> Commands;
-
-        // public List<Methodes> Methodes;
-
-        public void Instantiate()
-        {
-            Commands = new List<BaseCommand>();
-        }
     }
 }

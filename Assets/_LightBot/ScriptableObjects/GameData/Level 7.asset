@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 232e9c2cb3574995a25c7b3514749191, type: 3}
-  m_Name: Level 2 Program
+  m_Script: {fileID: 11500000, guid: bdfa397bd7cb406ab5ea4954ec05180b, type: 3}
+  m_Name: Level 7
   m_EditorClassIdentifier: 
+  LevelNumber: 7
+  GridMapSO: {fileID: 11400000, guid: b725ac4d017fc455eb261daa1a964d63, type: 2}
+  ProgramSO: {fileID: 11400000, guid: 41569d8351a2b443b9dd8d9f097cb170, type: 2}

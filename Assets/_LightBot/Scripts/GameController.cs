@@ -30,11 +30,11 @@ namespace LightBot
         
         }
 
-        public void StartLevel(int levelIndex)
+        public void StartLevel(int level)
         {
             _gameMenuCanvas.SetActive(false);
             _levelController.gameObject.SetActive(true);
-            _levelController.LoadLevelData(_gameDataSO.Levels[levelIndex]);
+            _levelController.LoadLevelData(_gameDataSO.Levels[level - 1]);
         }
 
         private void OnApplicationQuit()

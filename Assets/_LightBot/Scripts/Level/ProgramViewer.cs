@@ -56,11 +56,8 @@ namespace LightBot
                 for (int i = 0; i < commandImagesList.Count; i++)
                     _objectPool.Remove(commandImagesList[i]);
             commandImagesList = new List<GameObject>();
-            
+
             int index = 0;
-            if (_programSO.Commands == null)
-                _programSO.Commands = new List<BaseCommand>();
-            
             GameObject commandGameObject;
             foreach (var command in _programSO.Commands)
             {
@@ -106,6 +103,8 @@ namespace LightBot
         private void LoadData(ProgramSO programSO)
         {
             _programSO = programSO;
+            Debug.Log($"LoadData program viewer {programSO}");
+            
         }
         
 #if UNITY_EDITOR

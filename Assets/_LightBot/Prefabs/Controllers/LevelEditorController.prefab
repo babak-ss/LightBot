@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theZ: 6
   _camera: {fileID: 0}
-  _level: {fileID: 11400000, guid: 8da3ea73120dc4e39ac1e01fe4aef9b5, type: 2}
+  _level: {fileID: 11400000, guid: 7e4acb4c80e654a90a796a8a09d9c271, type: 2}
   _width: 5
   _height: 5
   _initializeMapButtonEvent: {fileID: 11400000, guid: a865085cab95246b5bbbe4741fecfcdc, type: 2}
