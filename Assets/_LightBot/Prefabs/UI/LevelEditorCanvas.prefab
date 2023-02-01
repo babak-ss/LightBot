@@ -641,7 +641,7 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LightBot.LevelEditor.LevelEditorInputController,
           Assembly-CSharp
-        m_MethodName: OnViewMapButtonClicked
+        m_MethodName: OnRefreshViewMapButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

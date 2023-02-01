@@ -43,76 +43,76 @@ MonoBehaviour:
     - X: 1
       Y: 1
       Step: 0
+      IsLamp: 0
+    - X: 1
+      Y: 2
+      Step: 0
+      IsLamp: 0
+    - X: 1
+      Y: 3
+      Step: 0
+      IsLamp: 0
+    - X: 1
+      Y: 4
+      Step: 0
+      IsLamp: 0
+    - X: 2
+      Y: 0
+      Step: 0
+      IsLamp: 0
+    - X: 2
+      Y: 1
+      Step: 0
+      IsLamp: 0
+    - X: 2
+      Y: 2
+      Step: 0
+      IsLamp: 0
+    - X: 2
+      Y: 3
+      Step: 0
+      IsLamp: 0
+    - X: 2
+      Y: 4
+      Step: 0
+      IsLamp: 0
+    - X: 3
+      Y: 0
+      Step: 0
+      IsLamp: 0
+    - X: 3
+      Y: 1
+      Step: 0
+      IsLamp: 0
+    - X: 3
+      Y: 2
+      Step: 1
+      IsLamp: 0
+    - X: 3
+      Y: 3
+      Step: 1
+      IsLamp: 0
+    - X: 3
+      Y: 4
+      Step: 0
+      IsLamp: 0
+    - X: 4
+      Y: 0
+      Step: 0
+      IsLamp: 0
+    - X: 4
+      Y: 1
+      Step: 0
+      IsLamp: 0
+    - X: 4
+      Y: 2
+      Step: 1
+      IsLamp: 0
+    - X: 4
+      Y: 3
+      Step: 1
+      IsLamp: 0
+    - X: 4
+      Y: 4
+      Step: 0
       IsLamp: 1
-    - X: 1
-      Y: 2
-      Step: 1
-      IsLamp: 0
-    - X: 1
-      Y: 3
-      Step: 0
-      IsLamp: 0
-    - X: 1
-      Y: 4
-      Step: 0
-      IsLamp: 0
-    - X: 2
-      Y: 0
-      Step: 0
-      IsLamp: 0
-    - X: 2
-      Y: 1
-      Step: 0
-      IsLamp: 0
-    - X: 2
-      Y: 2
-      Step: 0
-      IsLamp: 0
-    - X: 2
-      Y: 3
-      Step: 0
-      IsLamp: 0
-    - X: 2
-      Y: 4
-      Step: 0
-      IsLamp: 0
-    - X: 3
-      Y: 0
-      Step: 0
-      IsLamp: 0
-    - X: 3
-      Y: 1
-      Step: 0
-      IsLamp: 0
-    - X: 3
-      Y: 2
-      Step: 0
-      IsLamp: 0
-    - X: 3
-      Y: 3
-      Step: 0
-      IsLamp: 0
-    - X: 3
-      Y: 4
-      Step: 0
-      IsLamp: 0
-    - X: 4
-      Y: 0
-      Step: 1
-      IsLamp: 0
-    - X: 4
-      Y: 1
-      Step: 1
-      IsLamp: 0
-    - X: 4
-      Y: 2
-      Step: 3
-      IsLamp: 0
-    - X: 4
-      Y: 3
-      Step: 1
-      IsLamp: 0
-    - X: 4
-      Y: 4
-      Step: 0
-      IsLamp: 0

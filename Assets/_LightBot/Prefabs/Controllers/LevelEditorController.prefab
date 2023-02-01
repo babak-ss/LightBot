@@ -48,13 +48,13 @@ MonoBehaviour:
   theZ: 6
   _camera: {fileID: 0}
   _gridMapSO: {fileID: 11400000, guid: e27cd78438ed14ea8893668040614516, type: 2}
-  _initializeMapButtonEvent: {fileID: 11400000, guid: babd981513b0d484d989759bafc6ac07, type: 2}
-  _refreshViewButtonEvent: {fileID: 11400000, guid: 6cc9df2b4f2434f8fb459664bd2b3c54, type: 2}
+  _width: 5
+  _height: 5
+  _initializeMapButtonEvent: {fileID: 11400000, guid: a865085cab95246b5bbbe4741fecfcdc, type: 2}
+  _refreshGridMapViewButtonEvent: {fileID: 11400000, guid: 941a22330659c40c0a8219e66420ec6d, type: 2}
   _clickEvent: {fileID: 11400000, guid: 00327932ad071471c81501dcd049a1f2, type: 2}
   _longPressEvent: {fileID: 11400000, guid: 58278c74cf318458f83c49d90e70ad2c, type: 2}
-  _tileClickedEvent: {fileID: 11400000, guid: cdc2e299be4c748ceb603b2a9b0fe790, type: 2}
-  _tileLongPressEvent: {fileID: 11400000, guid: 41c78a1366605476b8bbfcff1c9aeb6e, type: 2}
-  _refreshViewEvent: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
+  _refreshGridMapViewEvent: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
 --- !u!114 &8327572319422887836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,5 +69,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clickEvent: {fileID: 11400000, guid: 00327932ad071471c81501dcd049a1f2, type: 2}
   _longPressEvent: {fileID: 11400000, guid: 58278c74cf318458f83c49d90e70ad2c, type: 2}
-  _initializeMapButtonEvent: {fileID: 11400000, guid: babd981513b0d484d989759bafc6ac07, type: 2}
-  _refreshViewButtonEvent: {fileID: 11400000, guid: 6cc9df2b4f2434f8fb459664bd2b3c54, type: 2}
+  _initializeMapButtonEvent: {fileID: 11400000, guid: a865085cab95246b5bbbe4741fecfcdc, type: 2}
+  _refreshGridMapViewButtonEvent: {fileID: 11400000, guid: 941a22330659c40c0a8219e66420ec6d, type: 2}

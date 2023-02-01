@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813966b4ba5644cf9f2f790f61d70dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _refreshViewEvent: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
-  _gridMapSO: {fileID: 11400000, guid: e27cd78438ed14ea8893668040614516, type: 2}
+  _refreshGridMapViewEvent: {fileID: 11400000, guid: 0a3033eb69a6c42d1aa4f97b05004386, type: 2}
   _tilePrefab: {fileID: 7119413498343074889, guid: 1617bd6f14c374acd9332e27ba75823a, type: 3}
   _objectPool: {fileID: 11400000, guid: 84de8165f28344fbab38c80b7139c7f9, type: 2}
+  _gridMapSO: {fileID: 11400000, guid: e27cd78438ed14ea8893668040614516, type: 2}

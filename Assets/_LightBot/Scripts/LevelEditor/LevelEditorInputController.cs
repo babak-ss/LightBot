@@ -9,7 +9,7 @@ namespace LightBot.LevelEditor
         [SerializeField] private Vector3EventSO _clickEvent;
         [SerializeField] private Vector3EventSO _longPressEvent;
         [SerializeField] private VoidEventSO _initializeMapButtonEvent;
-        [FormerlySerializedAs("_refreshGridMapViewEvent")] [SerializeField] private VoidEventSO _refreshViewButtonEvent;
+        [SerializeField] private VoidEventSO _refreshGridMapViewButtonEvent;
 
         private bool isLongPress = false;
         private float pressTimer = 0;
@@ -40,9 +40,9 @@ namespace LightBot.LevelEditor
             _initializeMapButtonEvent.Raise();
         }
 
-        public void OnViewMapButtonClicked()
+        public void OnRefreshViewMapButtonClicked()
         {
-            _refreshViewButtonEvent.Raise();
+            _refreshGridMapViewButtonEvent.Raise();
         }
     }
 }

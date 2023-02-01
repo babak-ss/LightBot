@@ -15,7 +15,7 @@ namespace LightBot.Map
 
         public GridMap(int width, int height)
         {
-            Debug.Log("GridMap Constructor");
+            Debug.Log("GridMap Constructor called");
             Width = width;
             Height = height;
             InitializeGridMap(width, height);

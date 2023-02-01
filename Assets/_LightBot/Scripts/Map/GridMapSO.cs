@@ -8,15 +8,10 @@ namespace LightBot.Map
     public class GridMapSO : ScriptableObject
     {
         [SerializeField] private GridMap _gridMap;
-        
-        public GridMapSO()
-        {
-            Debug.Log("GridMapSO Constructor");
-        }
 
         public void InitializeGridMapSO(int width, int height)
         {
-            Debug.Log("Initialize GridMap");
+            Debug.Log("Initialize GridMapSO");
             _gridMap = new GridMap(width, height);
         }
         

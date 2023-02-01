@@ -53,6 +53,8 @@ namespace LightBot
             commandImagesList = new List<GameObject>();
             GameObject commandGameObject;
             int index = 0;
+            if (_programSO.Commands == null)
+                _programSO.Commands = new List<BaseCommand>();
             foreach (var command in _programSO.Commands)
             {
                 commandGameObject = _objectPool.Get(_commandPrefab);

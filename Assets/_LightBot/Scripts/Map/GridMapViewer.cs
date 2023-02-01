@@ -1,4 +1,3 @@
-using System;
 using LightBot.Core;
 using UnityEngine;
 using Utilities;
@@ -10,7 +9,7 @@ namespace LightBot.Map
         [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
         [SerializeField] private GameObject _tilePrefab;
         [SerializeField] private ObjectPoolSO _objectPool;
-        private GridMapSO _gridMapSO;
+        [SerializeField] private GridMapSO _gridMapSO;
         
         private GameObject[] _tiles;
 
