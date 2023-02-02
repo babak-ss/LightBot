@@ -23,10 +23,7 @@ namespace LightBot.LevelEditor
         [SerializeField] private Vector3EventSO _clickEvent;
         [SerializeField] private Vector3EventSO _longPressEvent;
         
-        // [SerializeField] private Vector3EventSO _tileClickedEvent;
-        // [SerializeField] private Vector3EventSO _tileLongPressEvent;
-        
-        [FormerlySerializedAs("_refreshViewEvent")] [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
+        [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
 
         void Start()
         {
@@ -101,12 +98,6 @@ namespace LightBot.LevelEditor
         {
             _level.GridMapSO.InitializeGridMapSO(_width, _height);
             _refreshGridMapViewEvent.Raise();
-        }
-
-        private void OnApplicationQuit()
-        {
-            Debug.Log("On App quit");
-            UnityEditor.EditorUtility.SetDirty(_level);
         }
     }
 }

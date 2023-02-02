@@ -64,7 +64,6 @@ namespace LightBot.Map
                     
                     GameObject newTile = _objectPool.Get(_tilePrefab);
                     newTile.transform.localPosition = _gridMapSO.GetWorldPositionOfTile(i, j);
-                    newTile.GetComponentInChildren<Transform>().localScale = _gridMapSO.GetLocalScaleOfTile(i, j);
                     
                     if (_gridMapSO.GetTile(i, j).IsLamp)
                         newTile.GetComponentInChildren<Renderer>().material.color = Color.blue;
