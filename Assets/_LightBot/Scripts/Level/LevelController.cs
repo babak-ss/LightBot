@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using LightBot.Commands;
 using LightBot.Events;
 using LightBot.Map;
-using UnityEditor;
 using UnityEngine;
 using Utilities;
 
@@ -21,7 +20,8 @@ namespace LightBot.Level
         [SerializeField] private VoidEventSO _clearProgramEvent;
         [SerializeField] private LevelDataEventSO _levelDataEvent;
         [SerializeField] private VoidEventSO _levelWonEvent;
-        
+
+        private ProgramRunner _programRunner; 
         private LevelSO _currentLevel;
         private GameObject _botGameObject;
         private bool _isProgramRunning = false;
@@ -50,6 +50,8 @@ namespace LightBot.Level
         {
             _currentLevel = level;
             ResetBot();
+            _programRunner = new ProgramRunner(_botGameObject.transform, _currentLevel, _levelStateChangeEvent,
+                _levelWonEvent);
             _currentLevel.ProgramSO.Commands ??= new List<BaseCommand>();
         }
 
@@ -78,11 +80,6 @@ namespace LightBot.Level
             _currentLevel.ProgramSO.Commands = new List<BaseCommand>();
             _refreshProgramViewEvent.Raise();
         }
-
-        private void RunProgram()
-        {
-            StartCoroutine(RunCommands());
-        }
         
         private void ResetBot()
         {
@@ -94,48 +91,53 @@ namespace LightBot.Level
             _botGameObject.transform.SetParent(transform);
             _botGameObject.SetActive(true);
         }
-        
-        private IEnumerator RunCommands()
-        {
-            List<Tile> lampTiles = _currentLevel.GridMapSO.GetLampTiles();
-            foreach (var command in _currentLevel.ProgramSO.Commands)
-            {
-                if (command.Run(_botGameObject.transform, _currentLevel.GridMapSO))
-                {
-                    // Debug.Log($"running Command({command}) Yay! :D");
-                    if (command.GetType() == typeof(LightCommand))
-                    {
-                        for (int i = 0; i < lampTiles.Count; i++)
-                        {
-                            if (lampTiles[i] == _currentLevel.GridMapSO.GetTileFromWorldPosition(_botGameObject.transform.position))
-                            {
-                                lampTiles.RemoveAt(i);
-                                break;
-                            }
-                        }
-                    }
-                }
-                // else
-                // {
-                //     Debug.LogWarning($"running Command({command}) Nay X(");   
-                // }
-                
-                float commandDelayTimer = 0;
-                yield return new WaitUntil(() =>
-                {
-                    commandDelayTimer += Time.deltaTime;
-                    return commandDelayTimer > 1 || _isProgramRunning == false;
-                });
 
-                if (_isProgramRunning == false)
-                    yield break;
-            }
-            
-                
-            if (lampTiles.Count == 0)
-                _levelWonEvent.Raise();
-            
-            _levelStateChangeEvent.Raise(false);
+        private void RunProgram()
+        {
+            StartCoroutine(_programRunner.RunCommands());
         }
+        
+        // private IEnumerator RunCommands()
+        // {
+        //     List<Tile> lampTiles = _currentLevel.GridMapSO.GetLampTiles();
+        //     foreach (var command in _currentLevel.ProgramSO.Commands)
+        //     {
+        //         if (command.Run(_botGameObject.transform, _currentLevel.GridMapSO))
+        //         {
+        //             // Debug.Log($"running Command({command}) Yay! :D");
+        //             if (command.GetType() == typeof(LightCommand))
+        //             {
+        //                 for (int i = 0; i < lampTiles.Count; i++)
+        //                 {
+        //                     if (lampTiles[i] == _currentLevel.GridMapSO.GetTileFromWorldPosition(_botGameObject.transform.position))
+        //                     {
+        //                         lampTiles.RemoveAt(i);
+        //                         break;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         // else
+        //         // {
+        //         //     Debug.LogWarning($"running Command({command}) Nay X(");   
+        //         // }
+        //         
+        //         float commandDelayTimer = 0;
+        //         yield return new WaitUntil(() =>
+        //         {
+        //             commandDelayTimer += Time.deltaTime;
+        //             return commandDelayTimer > 1 || _isProgramRunning == false;
+        //         });
+        //
+        //         if (_isProgramRunning == false)
+        //             yield break;
+        //     }
+        //     
+        //         
+        //     if (lampTiles.Count == 0)
+        //         _levelWonEvent.Raise();
+        //     
+        //     _levelStateChangeEvent.Raise(false);
+        // }
     }
 }
