@@ -5,22 +5,49 @@ namespace LightBot.Map
     [Serializable]
     public class Tile
     {
-        public int X;
-        public int Y;
+        public int x;
+        public int y;
         public int Step;
         public bool IsLamp;
 
         public Tile(int x, int step, int y, bool isLamp)
         {
-            X = x;
-            Y = y;
+            this.x = x;
+            this.y = y;
             Step = step;
             IsLamp = isLamp;
         }
 
+        
+        public override bool Equals(object obj) => this.Equals(obj as Tile);
+        
+        public bool Equals(Tile other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            if (this.GetType() != other.GetType()) return false;
+            return x == other.x && y == other.y && Step == other.Step && IsLamp == other.IsLamp;
+        }
+        
+        public override int GetHashCode() => (X: x, Y: y).GetHashCode();
+        
+        public static bool operator ==(Tile lhs, Tile rhs)
+        {
+            if (lhs is null)
+            {
+                if (rhs is null)
+                    return true;
+                return false;
+            }
+            
+            return lhs.Equals(rhs);
+        }
+        
+        public static bool operator !=(Tile lhs, Tile rhs) => !(lhs == rhs);  
+        
         public override string ToString()
         {
-            return $"Tile[x={X}, y={Y}, step={Step}, isLamp = {IsLamp}]";
+            return $"Tile[x={x}, y={y}, step={Step}, isLamp = {IsLamp}]";
         }
     }
 }

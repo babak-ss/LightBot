@@ -20,7 +20,7 @@ namespace LightBot.Core
 
         public override void Raise()
         {
-            Debug.Log($"Event '{this.name}' Raised!");
+            // Debug.Log($"Event '{this.name}' Raised!");
             OnEventRaised?.Invoke();
         }
     }

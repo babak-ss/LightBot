@@ -1,4 +1,3 @@
-using System;
 using LightBot.Commands;
 using LightBot.Core;
 using TMPro;
@@ -29,7 +28,7 @@ namespace LightBot
         {
             _levelStateChangeEvent.Unsubscribe(OnLevelStateChangeEventListener);
         }
-
+        
         private void OnLevelStateChangeEventListener(bool isRunning)
         {
             _isProgramRunning = isRunning;

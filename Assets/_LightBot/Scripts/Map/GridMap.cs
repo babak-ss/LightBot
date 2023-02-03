@@ -32,9 +32,6 @@ namespace LightBot.Map
                     counter++;
                 }
             }
-
-            // tiles[Random.Range(0, tiles.Length)].IsLamp = true;
-            // tiles[Random.Range(0, tiles.Length)].Step = 1;
         }
     }
 }

@@ -24,10 +24,10 @@ namespace LightBot
         [SerializeField] private BoolEventSO _levelStateChangeEvent;
         [SerializeField] private VoidEventSO _resetLevelButtonEvent;
         [SerializeField] private VoidEventSO _refreshProgramViewEvent;
-        [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
         [SerializeField] private CommandEventSO _commandButtonEvent;
         [SerializeField] private VoidEventSO _clearProgramEvent;
         [SerializeField] private LevelDataEventSO _levelDataEvent;
+        [SerializeField] private VoidEventSO _levelWonEvent;
 
         public void LoadLevelData(LevelSO levelSO)
         {
@@ -144,12 +144,28 @@ namespace LightBot
         
         private IEnumerator RunCommands()
         {
+            List<Tile> lampTiles = _currentGridMap.GetLampTiles();
             foreach (var command in _currentProgram.Commands)
             {
                 if (command.Run(_botGameObject.transform, _currentGridMap))
+                {
                     Debug.Log($"running Command({command}) Yay! :D");
+                    if (command.GetType() == typeof(LightCommand))
+                    {
+                        for (int i = 0; i < lampTiles.Count; i++)
+                        {
+                            if (lampTiles[i] == _currentGridMap.GetTileFromWorldPosition(_botGameObject.transform.position))
+                            {
+                                lampTiles.RemoveAt(i);
+                                break;
+                            }
+                        }
+                    }
+                }
                 else
-                    Debug.LogWarning($"running Command({command}) Nay X(");
+                {
+                    Debug.LogWarning($"running Command({command}) Nay X(");   
+                }
                 
                 float commandDelayTimer = 0;
                 yield return new WaitUntil(() =>
@@ -157,9 +173,14 @@ namespace LightBot
                     commandDelayTimer += Time.deltaTime;
                     return commandDelayTimer > 1 || _isProgramRunning == false;
                 });
+
                 if (_isProgramRunning == false)
                     yield break;
             }
+            
+                
+            if (lampTiles.Count == 0)
+                _levelWonEvent.Raise();
             
             _levelStateChangeEvent.Raise(false);
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,22 +30,24 @@ namespace LightBot.Map
             
             return _gridMap.tiles[(x * GetHeight()) + y];
         }
+        
+        public Tile GetTile(float x, float y) { return GetTile((int)x, (int)y); }
 
         public int GetTileStep(int x, int y) { return GetTile(x, y).Step; }
         
         public bool IsLamp(int x, int y) { return GetTile(x, y).IsLamp; }
-
-        public Vector3[] GetLampTilesPosition()
+        
+        public List<Tile> GetLampTiles()
         {
-            List<Vector3> lampTiles = new List<Vector3>();
-
-            for (int i = 0; i < _gridMap.tiles.Length; i++)
+            List<Tile> lampTiles = new List<Tile>();
+            foreach (var tile in _gridMap.tiles)
             {
-                if (_gridMap.tiles[i].IsLamp)
-                    lampTiles.Add(new Vector3(_gridMap.tiles[i].X, _gridMap.tiles[i].Y, -1));
+                if (tile.IsLamp)
+                    lampTiles.Add(tile);
+                Debug.Log(tile);
             }
 
-            return lampTiles.ToArray();
+            return lampTiles;
         }
 
         public Vector3 GetWorldPositionOfTile(int x, int y)
@@ -58,7 +61,7 @@ namespace LightBot.Map
         public Tile GetTileFromWorldPosition(Vector3 worldPosition)
         {
             Vector3 tilePosition = GetTilePositionFromWorldPosition(worldPosition);
-            return GetTile((int)tilePosition.x, (int)tilePosition.y);
+            return GetTile(tilePosition.x, tilePosition.y);
         }
         
         public Vector3 GetTilePositionFromWorldPosition(Vector3 worldPosition)
@@ -73,8 +76,6 @@ namespace LightBot.Map
                         if (GridMap.TILE_SIZE / 2 >
                             Math.Abs(GetWorldPositionOfTile(i, j).z - worldPosition.z))
                         {
-                            // var clickedTile = GetTile(i, j);
-                            // Debug.Log(clickedTile.ToString());
                             return new Vector3(i, j, -1);
                         }
                     }
@@ -95,7 +96,6 @@ namespace LightBot.Map
         public void SetTileIsLamp(int x, int y, bool isLamp)
         {
             _gridMap.tiles[CalculateTileIndex(x, y)].IsLamp = isLamp;
-            Debug.Log($"##### setting tile[{x}, {y}] a lamp!");
         }
         
         public bool CheckIsValid(int x, int y) => x >= 0 && y >= 0 && 

@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theZ: 6
   _camera: {fileID: 0}
-  _level: {fileID: 11400000, guid: 7e4acb4c80e654a90a796a8a09d9c271, type: 2}
-  _width: 5
-  _height: 5
+  _level: {fileID: 11400000, guid: 4f6835bc27c4447b3b209a8effb87c0d, type: 2}
+  _width: 0
+  _height: 0
   _initializeMapButtonEvent: {fileID: 11400000, guid: a865085cab95246b5bbbe4741fecfcdc, type: 2}
   _refreshGridMapViewButtonEvent: {fileID: 11400000, guid: 941a22330659c40c0a8219e66420ec6d, type: 2}
   _levelDataEvent: {fileID: 11400000, guid: 9283b9bd9612641ee9f2c55033533b0f, type: 2}
