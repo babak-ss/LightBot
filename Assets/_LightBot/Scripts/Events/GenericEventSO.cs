@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace LightBot.Core
+namespace LightBot.Events
 {
     public class GenericEventSO<T> : EventBaseSO<T>
     {

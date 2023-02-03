@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LightBot.Core
+namespace LightBot.Events
 {
     [CreateAssetMenu(menuName = "Events/Float Event")]
     public class FloatEventSO : GenericEventSO<float> { }

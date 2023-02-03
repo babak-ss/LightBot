@@ -1,5 +1,5 @@
 using LightBot.Commands;
-using LightBot.Core;
+using LightBot.Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

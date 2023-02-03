@@ -1,7 +1,7 @@
 using LightBot.Commands;
 using UnityEngine;
 
-namespace LightBot.Core
+namespace LightBot.Events
 {
     [CreateAssetMenu(menuName = "Events/Command Event")]
     public class CommandEventSO : GenericEventSO<BaseCommand> { }

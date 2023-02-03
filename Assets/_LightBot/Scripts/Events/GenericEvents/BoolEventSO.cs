@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LightBot.Core
+namespace LightBot.Events
 {
     [CreateAssetMenu(menuName = "Events/Bool Event")]
     public class BoolEventSO : GenericEventSO<bool> { }

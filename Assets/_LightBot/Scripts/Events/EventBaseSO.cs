@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LightBot.Core
+namespace LightBot.Events
 {
     public abstract class EventBaseSO :ScriptableObject
     {

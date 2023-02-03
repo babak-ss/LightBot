@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using LightBot.Commands;
-using LightBot.Core;
+using LightBot.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;

@@ -1,5 +1,5 @@
 using System;
-using LightBot.Core;
+using LightBot.Events;
 using UnityEditor;
 using UnityEngine;
 

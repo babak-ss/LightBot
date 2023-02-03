@@ -1,4 +1,4 @@
-using LightBot.Core;
+using LightBot.Events;
 using UnityEngine;
 using UnityEngine.Serialization;
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LightBot.Core
+namespace LightBot.Events
 {
     [CreateAssetMenu(menuName = "Events/Void Event")]
     public class VoidEventSO : EventBaseSO
