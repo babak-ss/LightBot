@@ -1,4 +1,5 @@
 using LightBot.Events;
+using LightBot.Level;
 using UnityEngine;
 
 namespace LightBot.Commands

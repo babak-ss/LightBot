@@ -552,11 +552,19 @@ PrefabInstance:
     - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
       propertyPath: _level
       value: 
-      objectReference: {fileID: 11400000, guid: 8da3ea73120dc4e39ac1e01fe4aef9b5, type: 2}
+      objectReference: {fileID: 11400000, guid: e444cc2610ee74f0eb916e9717257999, type: 2}
+    - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
+      propertyPath: _width
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
+      propertyPath: _height
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3576223872498411259, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
       propertyPath: m_RootOrder
       value: 2

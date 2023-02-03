@@ -7,19 +7,12 @@ using UnityEditor;
 using UnityEngine;
 using Utilities;
 
-namespace LightBot
+namespace LightBot.Level
 {
     public class LevelController : MonoBehaviour
     {
         [SerializeField] private ObjectPoolSO _objectPool;
-        private LevelSO _levelSO;
-        private GridMapSO _currentGridMap;
-        private ProgramSO _currentProgram;
-        private bool _isProgramRunning = false;
-        
         [SerializeField] private GameObject _botPrefab;
-        private GameObject _botGameObject;
-
         [Header("Events")] 
         [SerializeField] private BoolEventSO _levelStateChangeEvent;
         [SerializeField] private VoidEventSO _resetLevelButtonEvent;
@@ -28,23 +21,15 @@ namespace LightBot
         [SerializeField] private VoidEventSO _clearProgramEvent;
         [SerializeField] private LevelDataEventSO _levelDataEvent;
         [SerializeField] private VoidEventSO _levelWonEvent;
-
-        public void LoadLevelData(LevelSO levelSO)
-        {
-            _levelSO = levelSO;
-            _currentGridMap = _levelSO.GridMapSO;
-            _currentProgram = _levelSO.ProgramSO;
-
-            if (_currentProgram.Commands == null)
-                _currentProgram.Commands = new List<BaseCommand>();
-            
-            _levelDataEvent.Raise(_levelSO);
-            ResetBot();
-        }
+        
+        private LevelSO _currentLevel;
+        private GameObject _botGameObject;
+        private bool _isProgramRunning = false;
         
         private void OnEnable()
         {
             _isProgramRunning = false;
+            _levelDataEvent.Subscribe(OnLevelDataEventListener);
             _levelStateChangeEvent.Subscribe(OnLevelStateChangeEventListener);
             _resetLevelButtonEvent.Subscribe(OnResetLevelButtonEventListener);
             _commandButtonEvent.Subscribe(OnCommandButtonEventListener);
@@ -53,12 +38,19 @@ namespace LightBot
         
         private void OnDisable()
         {
+            _isProgramRunning = false;
+            _levelDataEvent.Unsubscribe(OnLevelDataEventListener);
             _levelStateChangeEvent.Unsubscribe(OnLevelStateChangeEventListener);
             _resetLevelButtonEvent.Unsubscribe(OnResetLevelButtonEventListener);
             _commandButtonEvent.Unsubscribe(OnCommandButtonEventListener);
             _clearProgramEvent.Unsubscribe(OnClearProgramEventListener);
-            
-            EditorUtility.SetDirty(_currentProgram);
+        }
+
+        private void OnLevelDataEventListener(LevelSO level)
+        {
+            _currentLevel = level;
+            ResetBot();
+            _currentLevel.ProgramSO.Commands ??= new List<BaseCommand>();
         }
 
         private void OnLevelStateChangeEventListener(bool isRunning)
@@ -69,44 +61,23 @@ namespace LightBot
                 RunProgram();
         }
 
-        
-#if UNITY_EDITOR
-        void Update()
+        private void OnResetLevelButtonEventListener()
         {
-            if (Input.GetKeyUp(KeyCode.W))
-            {
-                Debug.Log($"running Move Command");
-                var command = new MoveCommand();
-                command.Run(_botGameObject.transform, _currentGridMap);
-            }
-
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                Debug.Log($"running Rotate Right Command");
-                var command = new RotateRightCommand();
-                command.Run(_botGameObject.transform, _currentGridMap);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Q))
-            {
-                Debug.Log($"running Rotate Left Command");
-                var command = new RotateLeftCommand();
-                command.Run(_botGameObject.transform, _currentGridMap);
-            }
-
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                Debug.Log($"running Jump Command");
-                var command = new JumpMoveCommand();
-                command.Run(_botGameObject.transform, _currentGridMap);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                RunProgram();
-            }
+            _clearProgramEvent.Raise();
+            _levelStateChangeEvent.Raise(false);
         }
-#endif
+
+        private void OnCommandButtonEventListener(BaseCommand command)
+        {
+            _currentLevel.ProgramSO.Commands.Add(command);
+            _refreshProgramViewEvent.Raise();
+        }
+
+        private void OnClearProgramEventListener()
+        {
+            _currentLevel.ProgramSO.Commands = new List<BaseCommand>();
+            _refreshProgramViewEvent.Raise();
+        }
 
         private void RunProgram()
         {
@@ -118,43 +89,25 @@ namespace LightBot
             if (_botGameObject != null)
                 _objectPool.Remove(_botGameObject);
             _botGameObject = _objectPool.Get(_botPrefab);
-            _botGameObject.transform.position = _currentGridMap.GetWorldPositionOfTile(0, 0);
+            _botGameObject.transform.position = _currentLevel.GridMapSO.GetWorldPositionOfTile(0, 0);
             _botGameObject.transform.localEulerAngles = Vector3.zero;
             _botGameObject.transform.SetParent(transform);
             _botGameObject.SetActive(true);
         }
-
-        private void OnResetLevelButtonEventListener()
-        {
-            _clearProgramEvent.Raise();
-            _levelStateChangeEvent.Raise(false);
-        }
-
-        private void OnCommandButtonEventListener(BaseCommand command)
-        {
-            _currentProgram.Commands.Add(command);
-            _refreshProgramViewEvent.Raise();
-        }
-
-        private void OnClearProgramEventListener()
-        {
-            _currentProgram.Commands = new List<BaseCommand>();
-            _refreshProgramViewEvent.Raise();
-        }
         
         private IEnumerator RunCommands()
         {
-            List<Tile> lampTiles = _currentGridMap.GetLampTiles();
-            foreach (var command in _currentProgram.Commands)
+            List<Tile> lampTiles = _currentLevel.GridMapSO.GetLampTiles();
+            foreach (var command in _currentLevel.ProgramSO.Commands)
             {
-                if (command.Run(_botGameObject.transform, _currentGridMap))
+                if (command.Run(_botGameObject.transform, _currentLevel.GridMapSO))
                 {
-                    Debug.Log($"running Command({command}) Yay! :D");
+                    // Debug.Log($"running Command({command}) Yay! :D");
                     if (command.GetType() == typeof(LightCommand))
                     {
                         for (int i = 0; i < lampTiles.Count; i++)
                         {
-                            if (lampTiles[i] == _currentGridMap.GetTileFromWorldPosition(_botGameObject.transform.position))
+                            if (lampTiles[i] == _currentLevel.GridMapSO.GetTileFromWorldPosition(_botGameObject.transform.position))
                             {
                                 lampTiles.RemoveAt(i);
                                 break;
@@ -162,10 +115,10 @@ namespace LightBot
                         }
                     }
                 }
-                else
-                {
-                    Debug.LogWarning($"running Command({command}) Nay X(");   
-                }
+                // else
+                // {
+                //     Debug.LogWarning($"running Command({command}) Nay X(");   
+                // }
                 
                 float commandDelayTimer = 0;
                 yield return new WaitUntil(() =>

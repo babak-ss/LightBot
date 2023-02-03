@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using LightBot.Commands;
 using LightBot.Events;
@@ -7,7 +6,7 @@ using UnityEngine.UI;
 using Utilities;
 
 
-namespace LightBot
+namespace LightBot.Level
 {
     public class ProgramViewer : MonoBehaviour
     {

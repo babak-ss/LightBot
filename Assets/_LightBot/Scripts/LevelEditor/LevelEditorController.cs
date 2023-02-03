@@ -1,5 +1,6 @@
 using System;
 using LightBot.Events;
+using LightBot.Level;
 using LightBot.Map;
 using UnityEngine;
 using UnityEngine.Serialization;

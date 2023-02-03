@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelController: {fileID: 0}
   _gameDataSO: {fileID: 11400000, guid: 7b276ce00df924a4bb4729c4f74f0375, type: 2}
-  _backLevelButtonEvent: {fileID: 11400000, guid: 061524a43ceb540058ef2f766040ae56, type: 2}
   _gameMenuCanvas: {fileID: 0}
+  _backLevelButtonEvent: {fileID: 11400000, guid: 061524a43ceb540058ef2f766040ae56, type: 2}
+  _levelDataEvent: {fileID: 11400000, guid: 9283b9bd9612641ee9f2c55033533b0f, type: 2}

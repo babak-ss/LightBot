@@ -1,5 +1,5 @@
-using System;
 using LightBot.Events;
+using LightBot.Level;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,10 +9,10 @@ namespace LightBot
     {
         [SerializeField] private LevelController _levelController;
         [SerializeField] private GameDataSO _gameDataSO;
+        [SerializeField] private GameObject _gameMenuCanvas;
 
         [SerializeField] private VoidEventSO _backLevelButtonEvent;
-
-        [SerializeField] private GameObject _gameMenuCanvas;
+        [SerializeField] private LevelDataEventSO _levelDataEvent;
     
         void Start()
         {
@@ -34,7 +34,7 @@ namespace LightBot
         {
             _gameMenuCanvas.SetActive(false);
             _levelController.gameObject.SetActive(true);
-            _levelController.LoadLevelData(_gameDataSO.Levels[level - 1]);
+            _levelDataEvent.Raise(_gameDataSO.Levels[level - 1]);
         }
 
         private void OnApplicationQuit()

@@ -134,7 +134,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6034318723518457226}
         m_TargetAssemblyTypeName: LightBot.Commands.IndexHolder, Assembly-CSharp
-        m_MethodName: RemoveSelfFromProgram
+        m_MethodName: OnCommandClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

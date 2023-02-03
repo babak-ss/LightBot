@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LightBot
+namespace LightBot.Level
 {
     public class LevelUIController : MonoBehaviour
     {

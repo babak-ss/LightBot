@@ -1,10 +1,8 @@
-using System;
 using LightBot.Events;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LightBot
+namespace LightBot.Level
 {
     public class LevelWinAnimationController : MonoBehaviour
     {

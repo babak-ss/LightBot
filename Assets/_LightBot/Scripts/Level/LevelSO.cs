@@ -1,8 +1,7 @@
-using LightBot.Commands;
 using LightBot.Map;
 using UnityEngine;
 
-namespace LightBot
+namespace LightBot.Level
 {
     [CreateAssetMenu(menuName = "Level/LevelSO")]
     public class LevelSO : ScriptableObject
