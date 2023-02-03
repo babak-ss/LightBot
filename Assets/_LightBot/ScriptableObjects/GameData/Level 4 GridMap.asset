@@ -16,63 +16,63 @@ MonoBehaviour:
     Width: 3
     Height: 5
     tiles:
-    - X: 0
-      Y: 0
+    - x: 0
+      y: 0
       Step: 0
       IsLamp: 0
-    - X: 0
-      Y: 1
+    - x: 0
+      y: 1
       Step: 1
       IsLamp: 0
-    - X: 0
-      Y: 2
+    - x: 0
+      y: 2
       Step: 0
       IsLamp: 0
-    - X: 0
-      Y: 3
+    - x: 0
+      y: 3
       Step: 1
       IsLamp: 0
-    - X: 0
-      Y: 4
+    - x: 0
+      y: 4
       Step: 2
       IsLamp: 0
-    - X: 1
-      Y: 0
+    - x: 1
+      y: 0
       Step: 0
       IsLamp: 0
-    - X: 1
-      Y: 1
+    - x: 1
+      y: 1
       Step: 1
       IsLamp: 0
-    - X: 1
-      Y: 2
+    - x: 1
+      y: 2
       Step: 0
       IsLamp: 0
-    - X: 1
-      Y: 3
+    - x: 1
+      y: 3
       Step: 1
       IsLamp: 0
-    - X: 1
-      Y: 4
+    - x: 1
+      y: 4
       Step: 2
       IsLamp: 0
-    - X: 2
-      Y: 0
+    - x: 2
+      y: 0
       Step: 0
       IsLamp: 0
-    - X: 2
-      Y: 1
+    - x: 2
+      y: 1
       Step: 1
       IsLamp: 0
-    - X: 2
-      Y: 2
+    - x: 2
+      y: 2
       Step: 0
       IsLamp: 0
-    - X: 2
-      Y: 3
+    - x: 2
+      y: 3
       Step: 1
       IsLamp: 0
-    - X: 2
-      Y: 4
+    - x: 2
+      y: 4
       Step: 2
       IsLamp: 1

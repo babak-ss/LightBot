@@ -16,19 +16,19 @@ MonoBehaviour:
     Width: 2
     Height: 2
     tiles:
-    - X: 0
-      Y: 0
+    - x: 0
+      y: 0
       Step: 0
       IsLamp: 0
-    - X: 0
-      Y: 1
+    - x: 0
+      y: 1
       Step: 3
       IsLamp: 1
-    - X: 1
-      Y: 0
+    - x: 1
+      y: 0
       Step: 1
       IsLamp: 0
-    - X: 1
-      Y: 1
+    - x: 1
+      y: 1
       Step: 2
       IsLamp: 0
