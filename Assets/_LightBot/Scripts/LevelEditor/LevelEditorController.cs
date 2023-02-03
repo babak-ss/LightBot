@@ -41,10 +41,10 @@ namespace LightBot.LevelEditor
             }
             
             Vector3 clickWorldPosition = _camera.ScreenToWorldPoint(new Vector3(clickedPosition.x, clickedPosition.y, theZ));
-            Vector3? tilePosition = _level.GridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
+            Tile tilePosition = _level.GridMapSO.GetTileFromWorldPosition(clickWorldPosition);
             
             if (tilePosition !=  null)
-                OnTileLongPressEventListener((Vector3)tilePosition);
+                OnTileLongPressEventListener(tilePosition);
         }
 
         private void OnClickEventListener(Vector3 clickedPosition)
@@ -56,25 +56,25 @@ namespace LightBot.LevelEditor
             }
             
             Vector3 clickWorldPosition = _camera.ScreenToWorldPoint(new Vector3(clickedPosition.x, clickedPosition.y, theZ));
-            Vector3? tilePosition = _level.GridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
+            Tile tilePosition = _level.GridMapSO.GetTileFromWorldPosition(clickWorldPosition);
             
             if (tilePosition !=  null)
-                OnTileClickedEventListener((Vector3)tilePosition);
+                OnTileClickedEventListener(tilePosition);
         }
         
-        private void OnTileClickedEventListener(Vector3 tile)
+        private void OnTileClickedEventListener(Tile tile)
         {
-            int tilePreviousStep = _level.GridMapSO.GetTileStep(tile.x, tile.y);
+            int tilePreviousStep = tile.Step;
             if (tilePreviousStep > 3)
                 tilePreviousStep = -1;
-            _level.GridMapSO.SetTileStep(tile.x, tile.y, tilePreviousStep + 1);
+            _level.GridMapSO.SetTileStep(tile, tilePreviousStep + 1);
             _refreshGridMapViewEvent.Raise();
         }
         
-        private void OnTileLongPressEventListener(Vector3 tilePosition)
+        private void OnTileLongPressEventListener(Tile tile)
         {
-            bool isLamp = _level.GridMapSO.IsLamp(tilePosition.x, tilePosition.y);
-            _level.GridMapSO.SetTileIsLamp(tilePosition.x, tilePosition.y, !isLamp);
+            bool isLamp = tile.IsLamp;
+            _level.GridMapSO.SetTileIsLamp(tile, !isLamp);
             _refreshGridMapViewEvent.Raise();
         }
 

@@ -47,8 +47,8 @@ MonoBehaviour:
   theZ: 6
   _camera: {fileID: 0}
   _level: {fileID: 11400000, guid: e444cc2610ee74f0eb916e9717257999, type: 2}
-  _width: 2
-  _height: 3
+  _width: 5
+  _height: 5
   _initializeMapButtonEvent: {fileID: 11400000, guid: a865085cab95246b5bbbe4741fecfcdc, type: 2}
   _refreshGridMapViewButtonEvent: {fileID: 11400000, guid: 941a22330659c40c0a8219e66420ec6d, type: 2}
   _levelDataEvent: {fileID: 11400000, guid: 9283b9bd9612641ee9f2c55033533b0f, type: 2}

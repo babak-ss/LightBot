@@ -7,11 +7,12 @@ namespace LightBot.Map
 {
     public class GridMapViewer : MonoBehaviour
     {
-        [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
-        [SerializeField] private LevelDataEventSO _levelDataEvent;
         [SerializeField] private GameObject _tilePrefab;
         [SerializeField] private ObjectPoolSO _objectPool;
         [SerializeField] private GridMapSO _gridMapSO;
+        [Header("Events")]
+        [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
+        [SerializeField] private LevelDataEventSO _levelDataEvent;
         
         private GameObject[] _tiles;
         
@@ -34,12 +35,36 @@ namespace LightBot.Map
 
         private void OnLevelDataEventListener(LevelSO level)
         {
-            Debug.Log("GridMapViewer OnLevelDataEvent");
             LoadData(level.GridMapSO);
             DrawMap();
         }
 
+        private void LoadData(GridMapSO gridMapSO)
+        {
+            _gridMapSO = gridMapSO;
+        }
+
         private void DrawMap()
+        {
+            HandleTileGameObjects();
+            
+            int counter = 0;
+            for (int i = 0; i < _gridMapSO.GetWidth(); i++)
+            {
+                for (int j = 0; j < _gridMapSO.GetHeight(); j++)
+                {
+                    Tile tile = _gridMapSO.GetTile(i, j);
+                    if (tile == null)
+                        break;
+                    
+                    GameObject newTile = GetNewTile(tile);
+                    _tiles[counter] = newTile;
+                    counter++;
+                }
+            }
+        }
+
+        private void HandleTileGameObjects()
         {
             if (_tiles != null)
             {
@@ -53,35 +78,22 @@ namespace LightBot.Map
                     }
                 }
             }
-            _tiles = new GameObject[_gridMapSO.getTilesCount()];
-            
-            int counter = 0;
-            for (int i = 0; i < _gridMapSO.GetWidth(); i++)
-            {
-                for (int j = 0; j < _gridMapSO.GetHeight(); j++)
-                {
-                    Tile tile = _gridMapSO.GetTile(i, j);
-                    if (tile == null)
-                        break;
-                    
-                    GameObject newTile = _objectPool.Get(_tilePrefab);
-                    newTile.transform.localPosition = _gridMapSO.GetWorldPositionOfTile(tile);
-                    
-                    if (_gridMapSO.GetTile(i, j).IsLamp)
-                        newTile.GetComponentInChildren<Renderer>().material.color = Color.blue;
-
-                    newTile.transform.parent = transform;
-                    newTile.name = $"Tile[{i},{j}]";
-                    _tiles[counter] = newTile;
-                    counter++;
-                    newTile.SetActive(true);
-                }
-            }
+            _tiles = new GameObject[_gridMapSO.GetTilesCount()];
         }
 
-        private void LoadData(GridMapSO gridMapSO)
+        private GameObject GetNewTile(Tile tile)
         {
-            _gridMapSO = gridMapSO;
+            GameObject newTile = _objectPool.Get(_tilePrefab);
+            newTile.transform.localPosition = _gridMapSO.GetWorldPositionOfTile(tile);
+                    
+            if (tile.IsLamp)
+                newTile.GetComponentInChildren<Renderer>().material.color = Color.blue;
+
+            newTile.transform.parent = transform;
+            newTile.name = tile.ToString();
+            newTile.SetActive(true);
+            
+            return newTile;
         }
     }
 }

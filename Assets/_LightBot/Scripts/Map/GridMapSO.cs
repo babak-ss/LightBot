@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,11 +11,10 @@ namespace LightBot.Map
 
         public void InitializeGridMapSO(int width, int height)
         {
-            Debug.Log("Initialize GridMapSO");
             _gridMap = new GridMap(width, height);
         }
         
-        public int getTilesCount() { return _gridMap.tiles.Length; }
+        public int GetTilesCount() { return _gridMap.tiles.Length; }
         public int GetHeight() { return _gridMap.Height; }
         public int GetWidth() { return _gridMap.Width; }
         
@@ -28,42 +26,18 @@ namespace LightBot.Map
                 return null;
             }
             
-            return _gridMap.tiles[(x * GetHeight()) + y];
+            return _gridMap.tiles[x * GetHeight() + y];
         }
-        
-        public Tile GetTile(float x, float y) { return GetTile((int)x, (int)y); }
-        
-        public Tile GetTile(Vector3 position) { return GetTile(position.x, position.y); }
-
-        public int GetTileStep(int x, int y) { return GetTile(x, y).Step; }
-
-        public int GetTileStep(float x, float y) { return GetTile(x, y).Step; }
-        
-        public bool IsLamp(int x, int y) { return GetTile(x, y).IsLamp; }
-        
-        public bool IsLamp(float x, float y) { return GetTile(x, y).IsLamp; }
-        
-        public List<Tile> GetLampTiles()
-        {
-            List<Tile> lampTiles = new List<Tile>();
-            foreach (var tile in _gridMap.tiles)
-            {
-                if (tile.IsLamp)
-                    lampTiles.Add(tile);
-                Debug.Log(tile);
-            }
-
-            return lampTiles;
-        }
+        public Tile GetTile(float x, float y) => GetTile((int)x, (int)y);
+        public Tile GetTile(Vector3 position) => GetTile(position.x, position.y);
 
         public Vector3 GetWorldPositionOfTile(int x, int y)
         {
             Vector3 worldPosition = new Vector3(GridMap.BASE_POSITION.x + GridMap.TILE_SIZE * x,
-                                                GridMap.BASE_POSITION.y + GetTileStep(x, y) / 4f,
+                                                GridMap.BASE_POSITION.y + GetTile(x, y).Step / 4f,
                                                 GridMap.BASE_POSITION.z + GridMap.TILE_SIZE * y);
             return worldPosition;
         }
-
         public Vector3 GetWorldPositionOfTile(Tile tile) => GetWorldPositionOfTile(tile.x, tile.y);
 
         public Tile GetTileFromWorldPosition(Vector3 worldPosition)
@@ -75,7 +49,7 @@ namespace LightBot.Map
                 return null;
         }
         
-        public Vector3? GetTilePositionFromWorldPosition(Vector3 worldPosition)
+        private Vector3? GetTilePositionFromWorldPosition(Vector3 worldPosition)
         {
             for (int i = 0; i < GetWidth(); i++)
             {
@@ -95,23 +69,32 @@ namespace LightBot.Map
 
             return null;
         }
-
-        public void SetTileStep(int x, int y, int step) { _gridMap.tiles[CalculateTileIndex(x, y)].Step = step; }
         
-        public void SetTileStep(float x, float y, int step) => SetTileStep((int)x, (int)y, step);
+        public List<Tile> GetLampTiles()
+        {
+            List<Tile> lampTiles = new List<Tile>();
+            foreach (var tile in _gridMap.tiles)
+                if (tile.IsLamp)
+                    lampTiles.Add(tile);
+
+            return lampTiles;
+        }
+
+        public void SetTileStep(int x, int y, int step)
+        {
+            _gridMap.tiles[CalculateTileIndex(x, y)].Step = step;
+        }
+        public void SetTileStep(Tile tile, int step) => SetTileStep(tile.x, tile.y, step);
 
         public void SetTileIsLamp(int x, int y, bool isLamp)
         {
             _gridMap.tiles[CalculateTileIndex(x, y)].IsLamp = isLamp;
         }
-
-        public void SetTileIsLamp(float x, float y, bool isLamp) => SetTileIsLamp((int)x, (int)y, isLamp);
+        public void SetTileIsLamp(Tile tile, bool isLamp) => SetTileIsLamp(tile.x, tile.y, isLamp);
         
         private bool CheckIsValid(int x, int y) => x >= 0 && y >= 0 && 
                                                   x < GetWidth() & y < GetHeight() && 
-                                                  CalculateTileIndex(x, y) < _gridMap.tiles.Length;
-
-        private bool CheckIsValid(float x, float y) => CheckIsValid((int)x, (int)y);
+                                                  CalculateTileIndex(x, y) < GetTilesCount();
         
         private int CalculateTileIndex(int x, int y) => x * _gridMap.Height + y;
 
