@@ -15,4 +15,104 @@ MonoBehaviour:
   _gridMap:
     Width: 5
     Height: 5
-    tiles: []
+    tiles:
+    - x: 0
+      y: 0
+      Step: 0
+      IsLamp: 0
+    - x: 0
+      y: 1
+      Step: 0
+      IsLamp: 0
+    - x: 0
+      y: 2
+      Step: 0
+      IsLamp: 0
+    - x: 0
+      y: 3
+      Step: 0
+      IsLamp: 0
+    - x: 0
+      y: 4
+      Step: 0
+      IsLamp: 0
+    - x: 1
+      y: 0
+      Step: 0
+      IsLamp: 0
+    - x: 1
+      y: 1
+      Step: 0
+      IsLamp: 0
+    - x: 1
+      y: 2
+      Step: 0
+      IsLamp: 0
+    - x: 1
+      y: 3
+      Step: 0
+      IsLamp: 0
+    - x: 1
+      y: 4
+      Step: 0
+      IsLamp: 0
+    - x: 2
+      y: 0
+      Step: 0
+      IsLamp: 0
+    - x: 2
+      y: 1
+      Step: 0
+      IsLamp: 0
+    - x: 2
+      y: 2
+      Step: 0
+      IsLamp: 0
+    - x: 2
+      y: 3
+      Step: 0
+      IsLamp: 0
+    - x: 2
+      y: 4
+      Step: 0
+      IsLamp: 0
+    - x: 3
+      y: 0
+      Step: 0
+      IsLamp: 0
+    - x: 3
+      y: 1
+      Step: 0
+      IsLamp: 0
+    - x: 3
+      y: 2
+      Step: 0
+      IsLamp: 0
+    - x: 3
+      y: 3
+      Step: 0
+      IsLamp: 0
+    - x: 3
+      y: 4
+      Step: 0
+      IsLamp: 0
+    - x: 4
+      y: 0
+      Step: 0
+      IsLamp: 0
+    - x: 4
+      y: 1
+      Step: 0
+      IsLamp: 0
+    - x: 4
+      y: 2
+      Step: 0
+      IsLamp: 0
+    - x: 4
+      y: 3
+      Step: 0
+      IsLamp: 0
+    - x: 4
+      y: 4
+      Step: 1
+      IsLamp: 1

@@ -36,8 +36,12 @@ namespace LightBot.Map
         public Tile GetTile(Vector3 position) { return GetTile(position.x, position.y); }
 
         public int GetTileStep(int x, int y) { return GetTile(x, y).Step; }
+
+        public int GetTileStep(float x, float y) { return GetTile(x, y).Step; }
         
         public bool IsLamp(int x, int y) { return GetTile(x, y).IsLamp; }
+        
+        public bool IsLamp(float x, float y) { return GetTile(x, y).IsLamp; }
         
         public List<Tile> GetLampTiles()
         {
@@ -92,18 +96,16 @@ namespace LightBot.Map
             return null;
         }
 
-        public Vector3 GetLocalScaleOfTile(int x, int y)
-        {
-            Vector3 localScale = new Vector3(1, GetTileStep(x, y) / 2f + 0.5f, 1);
-            return localScale;
-        }
-
         public void SetTileStep(int x, int y, int step) { _gridMap.tiles[CalculateTileIndex(x, y)].Step = step; }
+        
+        public void SetTileStep(float x, float y, int step) => SetTileStep((int)x, (int)y, step);
 
         public void SetTileIsLamp(int x, int y, bool isLamp)
         {
             _gridMap.tiles[CalculateTileIndex(x, y)].IsLamp = isLamp;
         }
+
+        public void SetTileIsLamp(float x, float y, bool isLamp) => SetTileIsLamp((int)x, (int)y, isLamp);
         
         private bool CheckIsValid(int x, int y) => x >= 0 && y >= 0 && 
                                                   x < GetWidth() & y < GetHeight() && 

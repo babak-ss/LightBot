@@ -15,26 +15,21 @@ namespace LightBot.LevelEditor
         [SerializeField] private LevelSO _level;
         [SerializeField] private int _width = 5;
         [SerializeField] private int _height = 5 ;
-        
+        [Header("Events")]
         [SerializeField] private VoidEventSO _initializeMapButtonEvent;
         [SerializeField] private VoidEventSO _refreshGridMapViewButtonEvent;
-
         [SerializeField] private LevelDataEventSO _levelDataEvent;
-        
         [SerializeField] private Vector3EventSO _clickEvent;
         [SerializeField] private Vector3EventSO _longPressEvent;
-        
         [SerializeField] private VoidEventSO _refreshGridMapViewEvent;
 
         void Start()
         {
             _initializeMapButtonEvent.Subscribe(OnInitializeMapEventListener);
             _refreshGridMapViewButtonEvent.Subscribe(OnRefreshViewButtonEventListener);
-            
+            _levelDataEvent.Raise(_level);
             _clickEvent.Subscribe(OnClickEventListener);
             _longPressEvent.Subscribe(OnLongPressEventListener);
-            
-            _levelDataEvent.Raise(_level);
         }
         
         private void OnLongPressEventListener(Vector3 clickedPosition)
@@ -67,19 +62,19 @@ namespace LightBot.LevelEditor
                 OnTileClickedEventListener((Vector3)tilePosition);
         }
         
-        private void OnTileClickedEventListener(Vector3 t)
+        private void OnTileClickedEventListener(Vector3 tile)
         {
-            int tilePreviousStep = _level.GridMapSO.GetTileStep((int)t.x, (int)t.y);
+            int tilePreviousStep = _level.GridMapSO.GetTileStep(tile.x, tile.y);
             if (tilePreviousStep > 3)
                 tilePreviousStep = -1;
-            _level.GridMapSO.SetTileStep((int)t.x, (int)t.y, tilePreviousStep + 1);
+            _level.GridMapSO.SetTileStep(tile.x, tile.y, tilePreviousStep + 1);
             _refreshGridMapViewEvent.Raise();
         }
         
-        private void OnTileLongPressEventListener(Vector3 t)
+        private void OnTileLongPressEventListener(Vector3 tilePosition)
         {
-            bool isLamp = _level.GridMapSO.IsLamp((int)t.x, (int)t.y);
-            _level.GridMapSO.SetTileIsLamp((int)t.x, (int)t.y, !isLamp);
+            bool isLamp = _level.GridMapSO.IsLamp(tilePosition.x, tilePosition.y);
+            _level.GridMapSO.SetTileIsLamp(tilePosition.x, tilePosition.y, !isLamp);
             _refreshGridMapViewEvent.Raise();
         }
 

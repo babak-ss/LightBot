@@ -400,10 +400,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6676921674366101562}
         m_TargetAssemblyTypeName: LightBot.LevelEditor.LevelEditorInputController,
           Assembly-CSharp
-        m_MethodName: OnInitializeMapButtonClicked
+        m_MethodName: InitializeMapButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 1750246579154472585}
   - component: {fileID: 1750246579154472584}
   - component: {fileID: 1750246579154472587}
+  - component: {fileID: 6676921674366101562}
   m_Layer: 5
   m_Name: LevelEditorCanvas
   m_TagString: Untagged
@@ -516,6 +517,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6676921674366101562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750246579154472586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59225f4b9f19454db0771040a148fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickEvent: {fileID: 11400000, guid: 00327932ad071471c81501dcd049a1f2, type: 2}
+  _longPressEvent: {fileID: 11400000, guid: 58278c74cf318458f83c49d90e70ad2c, type: 2}
+  _initializeMapButtonEvent: {fileID: 11400000, guid: a865085cab95246b5bbbe4741fecfcdc, type: 2}
+  _refreshGridMapViewButtonEvent: {fileID: 11400000, guid: 941a22330659c40c0a8219e66420ec6d, type: 2}
 --- !u!1 &1750246579679393469
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,10 +655,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6676921674366101562}
         m_TargetAssemblyTypeName: LightBot.LevelEditor.LevelEditorInputController,
           Assembly-CSharp
-        m_MethodName: OnRefreshViewMapButtonClicked
+        m_MethodName: RefreshViewMapButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

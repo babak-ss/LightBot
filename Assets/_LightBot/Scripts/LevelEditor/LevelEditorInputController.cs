@@ -35,12 +35,12 @@ namespace LightBot.LevelEditor
             }
         }
 
-        public void OnInitializeMapButtonClicked()
+        public void InitializeMapButton()
         {
             _initializeMapButtonEvent.Raise();
         }
 
-        public void OnRefreshViewMapButtonClicked()
+        public void RefreshViewMapButton()
         {
             _refreshGridMapViewButtonEvent.Raise();
         }

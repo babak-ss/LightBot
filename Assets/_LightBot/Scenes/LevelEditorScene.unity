@@ -369,17 +369,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1734357358 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8327572319422887836, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
-  m_PrefabInstance: {fileID: 3576223874064979863}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59225f4b9f19454db0771040a148fe2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1750246579647719786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -387,10 +376,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1750246578890494085, guid: fc3cb8c56269b46e9be8cc00e9ba927e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1734357358}
     - target: {fileID: 1750246579154472586, guid: fc3cb8c56269b46e9be8cc00e9ba927e, type: 3}
       propertyPath: m_Name
       value: LevelEditorCanvas
@@ -479,10 +464,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1750246579679393459, guid: fc3cb8c56269b46e9be8cc00e9ba927e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1734357358}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc3cb8c56269b46e9be8cc00e9ba927e, type: 3}
 --- !u!1001 &2073404789101652324
@@ -550,21 +531,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
-      propertyPath: _level
-      value: 
-      objectReference: {fileID: 11400000, guid: e444cc2610ee74f0eb916e9717257999, type: 2}
-    - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
-      propertyPath: _width
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 3576223872498411258, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
-      propertyPath: _height
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3576223872498411259, guid: 54a8e324bd07d49d58c50c9d21a2d89e, type: 3}
       propertyPath: m_RootOrder
       value: 2

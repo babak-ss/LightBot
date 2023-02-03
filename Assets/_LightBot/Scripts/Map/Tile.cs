@@ -29,7 +29,7 @@ namespace LightBot.Map
             return x == other.x && y == other.y && Step == other.Step && IsLamp == other.IsLamp;
         }
         
-        public override int GetHashCode() => (X: x, Y: y).GetHashCode();
+        public override int GetHashCode() => (X: x, Y: y, step: Step, isLamp: IsLamp).GetHashCode();
         
         public static bool operator ==(Tile lhs, Tile rhs)
         {

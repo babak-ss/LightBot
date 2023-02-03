@@ -17,7 +17,6 @@ namespace LightBot.Map
         
         private void OnEnable()
         {
-            Debug.Log("GridMapViewer OnEnable");
             _refreshGridMapViewEvent.Subscribe(OnRefreshGridMapViewEventListener);
             _levelDataEvent.Subscribe(OnLevelDataEventListener);
         }
@@ -25,6 +24,7 @@ namespace LightBot.Map
         private void OnDisable()
         {
             _refreshGridMapViewEvent.Unsubscribe(OnRefreshGridMapViewEventListener);
+            _levelDataEvent.Unsubscribe(OnLevelDataEventListener);
         }
 
         private void OnRefreshGridMapViewEventListener()
