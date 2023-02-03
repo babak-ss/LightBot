@@ -38,7 +38,6 @@ namespace LightBot.LevelEditor
         
         private void OnLongPressEventListener(Vector3 clickedPosition)
         {
-            Debug.Log("OnLongPressEventListener - LevelEditorController");
             if (!_level.GridMapSO.HasData())
             {
                 Debug.Log("No GridMap!");
@@ -46,16 +45,14 @@ namespace LightBot.LevelEditor
             }
             
             Vector3 clickWorldPosition = _camera.ScreenToWorldPoint(new Vector3(clickedPosition.x, clickedPosition.y, theZ));
-            Vector3 tilePosition = _level.GridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
+            Vector3? tilePosition = _level.GridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
             
-            Debug.Log("figured clicked tile pos - long press - LevelEditorController");
-            if (_level.GridMapSO.CheckIsValid((int)tilePosition.x, (int)tilePosition.y))
-                OnTileLongPressEventListener(tilePosition);
+            if (tilePosition !=  null)
+                OnTileLongPressEventListener((Vector3)tilePosition);
         }
 
         private void OnClickEventListener(Vector3 clickedPosition)
         {
-            Debug.Log("OnClickEventListener - LevelEditorController");
             if (!_level.GridMapSO.HasData())
             {
                 Debug.Log("No GridMap!");
@@ -63,17 +60,14 @@ namespace LightBot.LevelEditor
             }
             
             Vector3 clickWorldPosition = _camera.ScreenToWorldPoint(new Vector3(clickedPosition.x, clickedPosition.y, theZ));
-            Vector3 tilePosition = _level.GridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
+            Vector3? tilePosition = _level.GridMapSO.GetTilePositionFromWorldPosition(clickWorldPosition);
             
-            Debug.Log("figured clicked tile pos - LevelEditorController");
-            
-            if (_level.GridMapSO.CheckIsValid((int)tilePosition.x, (int)tilePosition.y))
-                OnTileClickedEventListener(tilePosition);
+            if (tilePosition !=  null)
+                OnTileClickedEventListener((Vector3)tilePosition);
         }
         
         private void OnTileClickedEventListener(Vector3 t)
         {
-            // Debug.Log($"found tile: {t}");
             int tilePreviousStep = _level.GridMapSO.GetTileStep((int)t.x, (int)t.y);
             if (tilePreviousStep > 3)
                 tilePreviousStep = -1;
@@ -83,7 +77,6 @@ namespace LightBot.LevelEditor
         
         private void OnTileLongPressEventListener(Vector3 t)
         {
-            // Debug.Log($"found tile: {t}");
             bool isLamp = _level.GridMapSO.IsLamp((int)t.x, (int)t.y);
             _level.GridMapSO.SetTileIsLamp((int)t.x, (int)t.y, !isLamp);
             _refreshGridMapViewEvent.Raise();

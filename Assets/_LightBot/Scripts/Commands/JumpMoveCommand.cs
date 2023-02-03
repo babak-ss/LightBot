@@ -8,13 +8,15 @@ namespace LightBot.Commands
     {
         public override bool Run(Transform transform, GridMapSO gridMap)
         {
-            var currentTile = gridMap.GetTileFromWorldPosition(transform.position);
+            Vector3 botPosition = transform.position;
+            Tile currentTile = gridMap.GetTileFromWorldPosition(botPosition);
             if (currentTile == null)
                 return false;
             
-            var simpleMovePosition = transform.position + transform.right * 1;
-            var destinationTile = gridMap.GetTileFromWorldPosition(simpleMovePosition);
+            Vector3 simpleMovePosition = botPosition + transform.right * 1;
+            Tile destinationTile = gridMap.GetTileFromWorldPosition(simpleMovePosition);
             int stepGap = destinationTile.Step - currentTile.Step;
+            
             if (destinationTile == null || stepGap == 0 || Math.Abs(stepGap) > 1)
                 return false;
             

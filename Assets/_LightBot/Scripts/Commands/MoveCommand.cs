@@ -7,11 +7,12 @@ namespace LightBot.Commands
     {
         public override bool Run(Transform transform, GridMapSO gridMap)
         {
-            var currentTile = gridMap.GetTileFromWorldPosition(transform.position);
+            Vector3 botPosition = transform.position;
+            var currentTile = gridMap.GetTileFromWorldPosition(botPosition);
             if (currentTile == null)
                 return false;
             
-            Vector3 newPosition = transform.position + transform.right * 1;
+            Vector3 newPosition = botPosition + transform.right * 1;
             var destinationTile = gridMap.GetTileFromWorldPosition(newPosition);
             
             if (destinationTile == null || destinationTile.Step != currentTile.Step)

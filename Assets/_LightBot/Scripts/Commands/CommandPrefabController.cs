@@ -9,13 +9,18 @@ namespace LightBot.Commands
         private ProgramSO _program;
         private BaseCommand _selfCommand;
 
-        public void SetSelfCommandAndProgram(BaseCommand command, ProgramSO program)
+        public void Initialize(BaseCommand command, ProgramSO program)
         {
             _selfCommand = command;
             _program = program;
         }
 
-        public void RemoveSelfFromProgram()
+        public void OnCommandClickButton()
+        {
+            RemoveCommandFromProgram();
+        }
+
+        private void RemoveCommandFromProgram()
         {
             _program.Commands.Remove(_selfCommand);
             _refreshProgramViewEvent.Raise();

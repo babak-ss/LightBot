@@ -32,6 +32,8 @@ namespace LightBot.Map
         }
         
         public Tile GetTile(float x, float y) { return GetTile((int)x, (int)y); }
+        
+        public Tile GetTile(Vector3 position) { return GetTile(position.x, position.y); }
 
         public int GetTileStep(int x, int y) { return GetTile(x, y).Step; }
         
@@ -58,13 +60,18 @@ namespace LightBot.Map
             return worldPosition;
         }
 
+        public Vector3 GetWorldPositionOfTile(Tile tile) => GetWorldPositionOfTile(tile.x, tile.y);
+
         public Tile GetTileFromWorldPosition(Vector3 worldPosition)
         {
-            Vector3 tilePosition = GetTilePositionFromWorldPosition(worldPosition);
-            return GetTile(tilePosition.x, tilePosition.y);
+            Vector3? tilePosition = GetTilePositionFromWorldPosition(worldPosition);
+            if (tilePosition != null)
+                return GetTile((Vector3)tilePosition);
+            else
+                return null;
         }
         
-        public Vector3 GetTilePositionFromWorldPosition(Vector3 worldPosition)
+        public Vector3? GetTilePositionFromWorldPosition(Vector3 worldPosition)
         {
             for (int i = 0; i < GetWidth(); i++)
             {
@@ -82,7 +89,7 @@ namespace LightBot.Map
                 }
             }
 
-            return Vector3.negativeInfinity;
+            return null;
         }
 
         public Vector3 GetLocalScaleOfTile(int x, int y)
@@ -98,9 +105,11 @@ namespace LightBot.Map
             _gridMap.tiles[CalculateTileIndex(x, y)].IsLamp = isLamp;
         }
         
-        public bool CheckIsValid(int x, int y) => x >= 0 && y >= 0 && 
+        private bool CheckIsValid(int x, int y) => x >= 0 && y >= 0 && 
                                                   x < GetWidth() & y < GetHeight() && 
                                                   CalculateTileIndex(x, y) < _gridMap.tiles.Length;
+
+        private bool CheckIsValid(float x, float y) => CheckIsValid((int)x, (int)y);
         
         private int CalculateTileIndex(int x, int y) => x * _gridMap.Height + y;
 

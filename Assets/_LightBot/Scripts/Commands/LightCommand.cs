@@ -7,10 +7,9 @@ namespace LightBot.Commands
     {
         public override bool Run(Transform transform, GridMapSO gridMap)
         {
-            Debug.Log(gridMap.GetTileFromWorldPosition(transform.position));
             if (gridMap.GetTileFromWorldPosition(transform.position).IsLamp)
             {
-                transform.GetComponent<BotAnimationController>().StartLightAnimation();
+                transform.GetComponent<BotAnimationController>().StartLightAnimation(); //TODO: better way maybe event?
                 return true;
             }
 

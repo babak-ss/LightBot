@@ -59,11 +59,12 @@ namespace LightBot.Map
             {
                 for (int j = 0; j < _gridMapSO.GetHeight(); j++)
                 {
-                    if (!_gridMapSO.CheckIsValid(i, j))
+                    Tile tile = _gridMapSO.GetTile(i, j);
+                    if (tile == null)
                         break;
                     
                     GameObject newTile = _objectPool.Get(_tilePrefab);
-                    newTile.transform.localPosition = _gridMapSO.GetWorldPositionOfTile(i, j);
+                    newTile.transform.localPosition = _gridMapSO.GetWorldPositionOfTile(tile);
                     
                     if (_gridMapSO.GetTile(i, j).IsLamp)
                         newTile.GetComponentInChildren<Renderer>().material.color = Color.blue;

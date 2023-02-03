@@ -92,7 +92,8 @@ namespace LightBot
                                                       Vector3.down * ((index / 6) * 100) + 
                                                       Vector3.right * ((index % 6) * 100);
 
-                commandGameObject.GetComponent<CommandPrefabController>().SetSelfCommandAndProgram(command, _programSO);
+                // TODO: make event
+                commandGameObject.GetComponent<CommandPrefabController>().Initialize(command, _programSO);
                 commandImagesList.Add(commandGameObject);
                 commandGameObject.SetActive(true);
 
